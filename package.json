@@ -1,5 +1,5 @@
 {
-  "name": "Shera-Md",
+  "name": "ashiya-md",
   "version": "1.0.0",
   "description": "WhatsApp Bot with Multi-Number Support",
   "main": "index.js",
@@ -44,6 +44,6 @@
     "baileys",
     "ashiya"
   ],
-  "author": "Sheran Matheesha",
+  "author": "ayesh themiya",
   "license": "MIT"
 }
