@@ -664,7 +664,7 @@ case 'bot_info': {
         const from = m.key.remoteJid;
         const captionText = `
 ╭━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎🤖* 〕━━┈⊷
-┃🍃│ɴᴀᴍᴇ: ᴍɪɴɪ stacy xd
+┃🍃│ɴᴀᴍᴇ: ᴍɪɴɪ ꜱʜᴇʀᴀ ᴍᴅ
 ┃🍃│ᴄʀᴇᴀᴛᴏʀ: Barbie la diablesse 
 ┃🍃│ᴠᴇʀsɪᴏɴ: ${config.version}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
@@ -1042,7 +1042,7 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
         
         // Message initial simple
         await socket.sendMessage(sender, { 
-            text: 'Stacy🌹 ping...'
+            text: 'ꜱʜᴇʀᴀɴ🍓👾 ping...'
         }, { quoted: msg });
 
         const endTime = new Date().getTime();
@@ -1065,7 +1065,7 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
         }
 
         const finalMessage = {
-            text: `╭───────────────⭓\n│\n│ 🏓 *PING RESULTS*\n│\n│ ⚡ Speed: ${latency}ms\n│ ${emoji} Quality: ${quality}\n│ 🕒 Time: ${new Date().toLocaleString()}\n│\n╰───────────────⭓\n> ᴍɪɴɪ stacy xᴅ`,
+            text: `╭───────────────⭓\n│\n│ 🏓 *PING RESULTS*\n│\n│ ⚡ Speed: ${latency}ms\n│ ${emoji} Quality: ${quality}\n│ 🕒 Time: ${new Date().toLocaleString()}\n│\n╰───────────────⭓\n> ᴍɪɴɪ ꜱʜᴇʀᴀ ᴍᴅ`,
             buttons: [
                 { buttonId: `${config.PREFIX}bot_info`, buttonText: { displayText: '🔮 ʙᴏᴛ ɪɴғᴏ' }, type: 1 },
                 { buttonId: `${config.PREFIX}bot_stats`, buttonText: { displayText: '📊 ʙᴏᴛ sᴛᴀᴛs' }, type: 1 }
@@ -2501,7 +2501,7 @@ await socket.sendMessage(sender, { react: { text: '👤', key: msg.key } });
 
                         await socket.sendMessage(sender, {
                             image: imageBuffer,
-                            caption: `🧠 *sʜᴀᴅᴏᴡ ᴍɪɴɪ ʙᴏᴛ ᴀɪ ɪᴍᴀɢᴇ*\n\n📌 ᴘʀᴏᴍᴘᴛ: ${prompt}`
+                            caption: `🧠 *ꜱʜᴇʀᴀ ᴍɪɴɪ ʙᴏᴛ ᴀɪ ɪᴍᴀɢᴇ*\n\n📌 ᴘʀᴏᴍᴘᴛ: ${prompt}`
                         }, { quoted: fakevCard });
                     } catch (err) {
                         console.error('AI Image Error:', err);
@@ -2817,7 +2817,7 @@ case 'close': case 'mute': {
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '𝚓𝚒𝚍 𝚋𝚖',
-                newsletterName: '𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳',
+                newsletterName: 'ꜱʜᴇʀᴀ-ᴍᴅ',
                 serverMessageId: -1
             }
         };
@@ -2942,7 +2942,7 @@ case 'cleargroup': {
         
         await socket.sendMessage(from, {
             image: { url: "https://files.catbox.moe/32n8gq.jpg" },
-            caption: `╭───────────────⭓\n│\n│ ɢʀᴏᴜᴘ ɴᴀᴍᴇ: ${groupMetadata.subject}\n│ ᴍᴇᴍʙᴇʀs: ${participants.length}\n│ ᴀᴅᴍɪɴs: ${adminCount}\n│ ᴜsᴇʀ: @${sender.split('@')[0]}\n│ ᴍᴇssᴀɢᴇ: ${message}\n│\n╰───────────────⭓\n\n> ᴍɪɴɪ Stacy xᴅ ᴛᴀɢᴀʟʟ\n\n${mentionsText}`,
+            caption: `╭───────────────⭓\n│\n│ ɢʀᴏᴜᴘ ɴᴀᴍᴇ: ${groupMetadata.subject}\n│ ᴍᴇᴍʙᴇʀs: ${participants.length}\n│ ᴀᴅᴍɪɴs: ${adminCount}\n│ ᴜsᴇʀ: @${sender.split('@')[0]}\n│ ᴍᴇssᴀɢᴇ: ${message}\n│\n╰───────────────⭓\n\n> ᴍɪɴɪ ꜱʜᴇʀᴀ ᴍᴅ ᴛᴀɢᴀʟʟ\n\n${mentionsText}`,
             mentions: [sender, ...participants.map(p => p.id)] // Mentionne l'utilisateur + tous les membres
         }, { quoted: msg }); // Reply à la personne qui utilise la commande
     } catch (error) {
@@ -3738,7 +3738,7 @@ case 'tourl2': {
       text: `✅ *${type} ᴜᴘʟᴏᴀᴅᴇᴅ!*\n\n` +
             `📁 *sɪᴢᴇ:* ${formatBytes(buffer.length)}\n` +
             `🔗 *ᴜʀʟ:* ${res.data}\n\n` +
-            `© ᴍᴀᴅᴇ ɪɴ ʙʏ ɪɴᴄᴏɴɴᴜ`
+            `© ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ💐💗`
     }, { quoted: msg });
 
     await socket.sendMessage(sender, { react: { text: '✅', key: msg.key || {} } });
