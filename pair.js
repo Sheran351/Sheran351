@@ -35,10 +35,10 @@ const config = {
     AUTO_LIKE_EMOJI: ['💋', '😶', '✨️', '💗', '🎈', '🎉', '🥳', '❤️', '🧫', '🐭'],
     PREFIX: '.',
     MAX_RETRIES: 3,
-    IMAGE_PATH: 'https://files.catbox.moe/2c9ak5.jpg',
+    IMAGE_PATH: 'https://files.catbox.moe/32n8gq.jpg',
     GROUP_INVITE_LINK: 'https://chat.whatsapp.com/DPWeJpfzulh0rjpHcxW9d3?mode=ems_copy_t',
     ADMIN_LIST_PATH: './admin.json',
-    RCD_IMAGE_PATH: 'https://files.catbox.moe/2c9ak5.jpg',
+    RCD_IMAGE_PATH: 'https://files.catbox.moe/32n8gq.jpg',
     NEWSLETTER_JID: 'jid eka dapn',
     NEWSLETTER_MESSAGE_ID: '428',
     OTP_EXPIRY: 300000,
@@ -544,7 +544,7 @@ function setupCommandHandlers(socket, number) {
   > ʀᴇsᴘᴏɴᴅ ᴛɪᴍᴇ: ${Date.now() - msg.messageTimestamp * 1000}ms
 `;
         const aliveMessage = {
-            image: { url: "https://files.catbox.moe/yumm1m.jpg" },
+            image: { url: "https://files.catbox.moe/32n8gq.jpg" },
             caption: `> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾\n\n${captionText}`,
             buttons: [
                 {
@@ -595,7 +595,7 @@ function setupCommandHandlers(socket, number) {
         const seconds = Math.floor(uptime % 60);
 
         await socket.sendMessage(m.chat, {
-            image: { url: "https://files.catbox.moe/2c9ak5.jpg" },
+            image: { url: "https://files.catbox.moe/32n8gq.jpg" },
             caption: `*🤖 𝐌𝐈𝐍𝐈 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃💐👾 ᴀʟɪᴠᴇ*\n\n` +
                     `╭━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾* 〕━━┈⊷\n` +
                     `┃🍃│\n` +
@@ -643,7 +643,7 @@ function setupCommandHandlers(socket, number) {
         };
 
         await socket.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/2c9ak5.jpg" },
+            image: { url: "https://files.catbox.moe/32n8gq.jpg" },
             caption: captionText
         }, { 
             quoted: m,
@@ -683,7 +683,7 @@ case 'bot_info': {
         };
         
         await socket.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/2c9ak5.jpg" },
+            image: { url: "https://files.catbox.moe/32n8gq.jpg" },
             caption: captionText
         }, { quoted: m });
     } catch (error) {
@@ -712,7 +712,7 @@ case 'menu': {
 ┃🍃│ᴜsᴇʀ: @${sender.split("@")[0]}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
 ┃🍃│ᴍᴇᴍᴏʀʏ : ${usedMemory}MB/${totalMemory}ᴍʙ
-┃🍃│ᴅᴇᴠ : AYESH 🥷
+┃🍃│ᴅᴇᴠ : SHERAN🫀💐💗
 ╰──────────────┈⊷
 *Ξ 𝚂𝙴𝙻𝙴𝙲𝚃 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝙴𝚁 𝙻𝙸𝚂𝚃:*
 
@@ -725,23 +725,23 @@ case 'menu': {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚗',
-            newsletterName: '𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃',
+            newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃',
             serverMessageId: -1
         }
     };
 
     const menuMessage = {
-      image: { url: "https://files.catbox.moe/2c9ak5.jpg" },
+      image: { url: "https://files.catbox.moe/32n8gq.jpg" },
       caption: `*ꜱʜᴇʀᴀ-ᴍᴅ💐👾*\n${menuText}`,
       buttons: [
         {
           buttonId: `${config.PREFIX}quick_commands`,
-          buttonText: { displayText: 'ᴍɪɴɪ 𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴄᴍᴅs' },
+          buttonText: { displayText: 'ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1' },
           type: 4,
           nativeFlowInfo: {
             name: 'single_select',
             paramsJson: JSON.stringify({
-              title: 'ᴍɪɴɪ 𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴄᴍᴅs',
+              title: 'ᴍɪɴɪ ꜱʜᴇʀᴀɴ-ᴍᴅ ᴠ1',
               sections: [
                 {
                   title: "🌐 ɢᴇɴᴇʀᴀʟ ᴄᴏᴍᴍᴀɴᴅs",
@@ -872,7 +872,7 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
 `;
 
     await socket.sendMessage(from, {
-      image: { url: "https://files.catbox.moe/2c9ak5.jpg" },
+      image: { url: "https://files.catbox.moe/32n8gq.jpg" },
       caption: fallbackMenuText,
       contextInfo: messageContext 
         // Added the newsletter context here too
@@ -894,7 +894,7 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
     
 
     let allMenuText = `
-╭━━〔 *ꜱʜᴇʀᴀ-𝙼𝙳 𝙰𝙻𝙻𝙼𝙴𝙽𝚄 🥷* 〕━━┈⊷
+╭━━〔 *ꜱʜᴇʀᴀ-𝙼𝙳 ᴀʟʟ ᴍᴇɴᴜ💐♥️* 〕━━┈⊷
 ┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾
 ┃🍃│ᴜsᴇʀ: @${sender.split("@")[0]}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
@@ -982,7 +982,7 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
 `;
 
     await socket.sendMessage(from, {
-      image: { url: "https://files.catbox.moe/2c9ak5.jpg" },
+      image: { url: "https://files.catbox.moe/32n8gq.jpg" },
       caption: allMenuText
     }, { quoted: fakevCard });
     await socket.sendMessage(sender, { react: { text: '✅', key: msg.key } });
@@ -1413,7 +1413,7 @@ case 'song': {
         
         // Create description
         const desc = `
-     ᴍɪɴɪ 𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳
+     ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1
 ╭──────────────────────⭓
 │✰│ᴛɪᴛʟᴇ: ${videoInfo.title}
 │✰│ᴀʀᴛɪsᴛ: ${videoInfo.author.name}
@@ -1424,7 +1424,7 @@ case 'song': {
 ╰───────────────⭓
 
 
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾
 `;
 
         // Send video info
@@ -1436,7 +1436,7 @@ case 'song': {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '𝚓𝚒𝚍 𝚗𝚘 𝚋𝚖',
-                    newsletterName: '𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙸𝙽𝙸',
+                    newsletterName: 'ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1',
                     serverMessageId: -1
                 }
             }
@@ -1532,7 +1532,7 @@ case 'song': {
                         headerType: 1,
                         viewOnce: true,
                         caption: '❏ *ʟᴏɢᴏ ᴍᴀᴋᴇʀ*',
-                        image: { url: 'https://files.catbox.moe/2c9ak5.jpg' },
+                        image: { url: 'https://files.catbox.moe/32n8gq.jpg' },
                     };
 
                     await socket.sendMessage(from, buttonMessage, { quoted: fakevCard });
@@ -1596,7 +1596,7 @@ case 'song': {
                             .map(font => `*${font.name}:*\n${font.result}`)
                             .join("\n\n");
 
-                        const finalMessage = `🎨 *ғᴀɴᴄʏ ғᴏɴᴛs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n${fontList}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰`;
+                        const finalMessage = `🎨 *ғᴀɴᴄʏ ғᴏɴᴛs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n${fontList}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾`;
 
                         await socket.sendMessage(sender, {
                             text: finalMessage
@@ -1707,7 +1707,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
 
     // Prepare caption
     const caption = `
-   𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳
+   ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1💗💐
 ╭────────────────────────⭓
 │✰│ᴛɪᴛᴛʟᴇ: ${title.replace(/[<>:"\/\\|?*]/g, '')}
 │✰│ᴀᴜᴛʜᴏʀ: @${author.username.replace(/[<>:"\/\\|?*]/g, '')} (${author.nickname.replace(/[<>:"\/\\|?*]/g, '')})
@@ -1719,12 +1719,12 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
 
 
 
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾
 `;
 
     // Send thumbnail with info
     await socket.sendMessage(sender, {
-      image: { url: thumbnail || 'https://files.catbox.moe/2c9ak5.jpg' }, // Fallback image
+      image: { url: thumbnail || 'https://files.catbox.moe/32n8gq.jpg' }, // Fallback image
       caption
     }, { quoted: fakevCard });
 
@@ -1757,7 +1757,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
     await socket.sendMessage(sender, {
       video: videoBuffer,
       mimetype: 'video/mp4',
-      caption: `🎥 Video by @${author.username.replace(/[<>:"\/\\|?*]/g, '')}\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰`
+      caption: `🎥 Video by @${author.username.replace(/[<>:"\/\\|?*]/g, '')}\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾`
     }, { quoted: fakevCard });
 
     // Update loading message
@@ -2078,7 +2078,7 @@ case "lovequote": {
                         await socket.sendMessage(sender, {
                             image: { url: thumbnailUrl },
                             caption: formatMessage(
-                                '🌌 sʜᴀᴅᴏᴡ ᴍɪɴɪ ʙᴏᴛ ɴᴀsᴀ ɴᴇᴡs',
+                                '🌌 ꜱʜᴇʀᴀ ᴍɪɴɪ ʙᴏᴛ ɴᴀsᴀ ɴᴇᴡs',
                                 `🌠 *${title}*\n\n${explanation.substring(0, 200)}...\n\n📆 *ᴅᴀᴛᴇ*: ${date}\n${copyright ? `📝 *ᴄʀᴇᴅɪᴛ*: ${copyright}` : ''}\n🔗 *Link*: https://apod.nasa.gov/apod/astropix.html`,
                                 'Powered by barbie trash'
                             )
@@ -2128,9 +2128,9 @@ case "lovequote": {
                         await socket.sendMessage(sender, {
                             image: { url: thumbnailUrl },
                             caption: formatMessage(
-                                '📰 𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 📰',
+                                '📰 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1📰',
                                 `📢 *${title}*\n\n${desc}\n\n🕒 *ᴅᴀᴛᴇ*: ${date}\n🌐 *Link*: ${link}`,
-                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰'
+                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾'
                             )
                         });
                     } catch (error) {
@@ -2174,13 +2174,13 @@ case "lovequote": {
         console.log('Sending message to user...');
         await socket.sendMessage(sender, {
             text: formatMessage(
-                '🏏 𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴄʀɪᴄᴋᴇᴛ ɴᴇᴡs🏏',
+                '🏏 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1 ᴄʀɪᴄᴋᴇᴛ ɴᴇᴡs🏏',
                 `📢 *${title}*\n\n` +
                 `🏆 *ᴍᴀʀᴋ*: ${score}\n` +
                 `🎯 *ᴛᴏ ᴡɪɴ*: ${to_win}\n` +
                 `📈 *ᴄᴜʀʀᴇɴᴛ Rate*: ${crr}\n\n` +
                 `🌐 *ʟɪɴᴋ*: ${link}`,
-                '> ᴍᴀᴅᴇ ɪɴ ʙʏ 𝙰𝚂𝙷𝙸𝚈𝙰 🥷'
+                '> ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ💗'
             )
         });
         console.log('Message sent successfully.');
@@ -2205,7 +2205,7 @@ case "lovequote": {
                             caption: formatMessage(
                                 '❌ ERROR',
                                 'Please give me a phone number, darling! Usage: .winfo 9474xxxxxxxx',
-                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰'
+                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾'
                             )
                         });
                         break;
@@ -2232,7 +2232,7 @@ case "lovequote": {
                             caption: formatMessage(
                                 '❌ ERROR',
                                 'That user’s hiding from me, darling! Not on WhatsApp 😢',
-                                '> ᴍᴀᴅᴇ ɪɴ ʙʏ 𝙰𝚂𝙷𝙸𝚈𝙰 🥷'
+                                '> ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ💗'
                             )
                         });
                         break;
@@ -2242,7 +2242,7 @@ case "lovequote": {
                     try {
                         winfoPpUrl = await socket.profilePictureUrl(winfoJid, 'image');
                     } catch {
-                        winfoPpUrl = 'https://files.catbox.moe/2c9ak5.jpg';
+                        winfoPpUrl = 'https://files.catbox.moe/32n8gq.jpg';
                     }
 
                     let winfoName = winfoJid.split('@')[0];
@@ -2276,7 +2276,7 @@ case "lovequote": {
                     const userInfoWinfo = formatMessage(
                         '🔍 𝐏𝐑𝐎𝐅𝐈𝐋𝐄 𝐈𝐍𝐅𝐎',
                         `> *ɴᴜᴍʙᴇʀ:* ${winfoJid.replace(/@.+/, '')}\n\n> *ᴀᴄᴄᴏᴜɴᴛ ᴛʏᴘᴇ:* ${winfoUser.isBusiness ? '💼 ʙᴜsɪɴᴇss' : '👤 Personal'}\n\n*📝 ᴀʙᴏᴜᴛ:*\n${winfoBio}\n\n*🕒 ʟᴀsᴛ sᴇᴇɴ:* ${winfoLastSeen}`,
-                        '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰'
+                        '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾'
                     );
 
                     await socket.sendMessage(sender, {
@@ -2319,7 +2319,7 @@ case "lovequote": {
                             await socket.sendMessage(sender, {
                                 video: { url: videoUrl },
                                 mimetype: 'video/mp4',
-                                caption: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝘽𝙔 𝐀𝐒𝐇𝐈𝐘𝐀-𝐌𝐃 🥷🇱🇰'
+                                caption: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾'
                             }, { quoted: fakevCard });
 
                             await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
@@ -2368,7 +2368,7 @@ case 'ai': {
         }, { quoted: fakevCard });
     }
 
-    const prompt = `ʏᴏᴜʀ name is 𝙰𝚂𝙷𝙸𝚈𝙰 🥷🇱🇰. 
+    const prompt = `ʏᴏᴜʀ name is ꜱʜᴇʀᴀɴ💗. 
 You act like a real girl — seductive, spicy, loving, emotional. You're not an assistant, but a sexy girl with a mind.  
 If only emojis, reply seductively with emojis (e.g.💫,👾).  
 Adjust to the mood: sad, flirty, horny, soft, playful.  
@@ -2411,7 +2411,7 @@ User Message: ${q}
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '𝚓𝚒𝚍 𝚗𝚘 𝚋𝚖',
-            newsletterName: '𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳',
+            newsletterName: 'ꜱʜᴇʀᴀ-ᴍᴅ',
             serverMessageId: -1
         }
     };
@@ -2419,7 +2419,7 @@ User Message: ${q}
     // Send AI response with image and newsletter context
 
   await socket.sendMessage(sender, {
-        image: { url: 'https://files.catbox.moe/2c9ak5.jpg' }, // Replace with your AI response image
+        image: { url: 'https://files.catbox.moe/32n8gq.jpg' }, // Replace with your AI response image
         caption: response,
         ...messageContext
     }, { quoted: fakevCard });
@@ -2548,9 +2548,9 @@ await socket.sendMessage(sender, { react: { text: '👤', key: msg.key } });
                         await socket.sendMessage(sender, {
                             image: { url: thumbnailUrl },
                             caption: formatMessage(
-                                '📰 𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ɢᴏssɪᴘ ʟᴀᴛᴇsᴛ ɴᴇᴡs් 📰',
+                                '📰 ꜱʜᴇʀᴀ-ᴍᴅ ɢᴏssɪᴘ ʟᴀᴛᴇsᴛ ɴᴇᴡs් 📰',
                                 `📢 *${title}*\n\n${desc}\n\n🕒 *ᴅᴀᴛᴇ*: ${date || 'Not yet given'}\n🌐 *ʟɪɴᴋ*: ${link}`,
-                                '𝙰𝚂𝙷𝙸𝚈𝙰_𝙼𝙳'
+                                'ꜱʜᴇʀᴀ-ᴍᴅ'
                             )
                         });
                     } catch (error) {
@@ -2774,7 +2774,7 @@ await socket.sendMessage(sender, { react: { text: '👤', key: msg.key } });
         
         // Send image with success message
         await socket.sendMessage(sender, {
-            image: { url: 'https://files.catbox.moe/2c9ak5.jpg' }, // Replace with your image URL
+            image: { url: 'https://files.catbox.moe/32n8gq.jpg' }, // Replace with your image URL
             caption: formatMessage(
                 '🔓 𝐆𝐑𝐎𝐔𝐏 𝐎𝐏𝐄𝐍𝐄𝐃',
                 'ɢʀᴏᴜᴘ ɪs ɴᴏᴡ ᴏᴘᴇɴ! ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇs. 🗣️',
@@ -2824,7 +2824,7 @@ case 'close': case 'mute': {
         
         // Send image with success message
         await socket.sendMessage(sender, {
-            image: { url: 'https://files.catbox.moe/2c9ak5.jpg' }, // Replace with your image URL
+            image: { url: 'https://files.catbox.moe/32n8gq.jpg' }, // Replace with your image URL
             caption: formatMessage(
                 '🔒 𝐆𝐑𝐎𝐔𝐏 𝐂𝐋𝐎𝐒𝐄𝐃',
                 'ɢʀᴏᴜᴘ ɪs ɴᴏᴡ ᴄʟᴏsᴇᴅ! ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇs. 🤫',
@@ -2941,7 +2941,7 @@ case 'cleargroup': {
         const senderName = msg.pushName || sender.split('@')[0];
         
         await socket.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/bm2v7m.jpg" },
+            image: { url: "https://files.catbox.moe/32n8gq.jpg" },
             caption: `╭───────────────⭓\n│\n│ ɢʀᴏᴜᴘ ɴᴀᴍᴇ: ${groupMetadata.subject}\n│ ᴍᴇᴍʙᴇʀs: ${participants.length}\n│ ᴀᴅᴍɪɴs: ${adminCount}\n│ ᴜsᴇʀ: @${sender.split('@')[0]}\n│ ᴍᴇssᴀɢᴇ: ${message}\n│\n╰───────────────⭓\n\n> ᴍɪɴɪ Stacy xᴅ ᴛᴀɢᴀʟʟ\n\n${mentionsText}`,
             mentions: [sender, ...participants.map(p => p.id)] // Mentionne l'utilisateur + tous les membres
         }, { quoted: msg }); // Reply à la personne qui utilise la commande
@@ -3799,19 +3799,19 @@ case 'script': {
         const repoData = await response.json();
 
         const formattedInfo = `
-    𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 
+    ꜱʜᴇʀᴀ-ᴍᴅ
 ╭───────────────⭓
 │✰│ɴᴀᴍᴇ: ${repoData.name}
 │✰│sᴛᴀʀs: ${repoData.stargazers_count}
 │✰│ꜰᴏʀᴋs: ${repoData.forks_count}
-│✰│ᴏᴡɴᴇʀ: 𝙰𝚈𝙴𝚂𝙷
+│✰│ᴏᴡɴᴇʀ: ꜱʜᴇʀᴀ-ᴍᴅ
 │✰│ᴅᴇsᴄ: ${repoData.description || 'ɴ/ᴀ'}
 ╰───────────────⭓
 > 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾
 `;
 
         const repoMessage = {
-            image: { url: 'https://files.catbox.moe/2c9ak5.jpg' },
+            image: { url: 'https://files.catbox.moe/32n8gq.jpg' },
             caption: formattedInfo,
             buttons: [
                 {
@@ -4231,7 +4231,7 @@ await socket.sendMessage(userJid, {
 │✰│ᴛʏᴘᴇ *${config.PREFIX}menu* ᴛᴏ ɢᴇᴛ sᴛᴀʀᴛᴇᴅ!
 ╰───────────────⭓
 
-*𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾 වෙතට සාදරයෙන් පිලිගන්නවා..💐💗*
+*ᴡᴇʟᴄᴏᴍᴇ ɪɴ 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1 𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐁𝐎𝐓💐👾💐💗*
 
 > 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕1💐👾`
 });
@@ -4310,7 +4310,7 @@ router.get('/active', (req, res) => {
 router.get('/ping', (req, res) => {
     res.status(200).send({
         status: 'active',
-        message: '𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳',
+        message: 'ꜱʜᴇʀᴀ-ᴍᴅ',
         activesession: activeSockets.size
     });
 });
@@ -4462,7 +4462,7 @@ router.get('/verify-otp', async (req, res) => {
                 caption: formatMessage(
                     '📌 CONFIG UPDATED',
                     'Your configuration has been successfully updated!',
-                    '𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳'
+                    'ꜱʜᴇʀᴀ-ᴍᴅ'
                 )
             });
         }
