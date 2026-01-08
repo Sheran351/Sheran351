@@ -35,22 +35,22 @@ const config = {
     AUTO_LIKE_EMOJI: ['💋', '😶', '✨️', '💗', '🎈', '🎉', '🥳', '❤️', '🧫', '🐭'],
     PREFIX: '.',
     MAX_RETRIES: 3,
-    IMAGE_PATH: 'https://files.catbox.moe/8y5rdv.jpeg',
-    GROUP_INVITE_LINK: 'https://chat.whatsapp.com/DPWeJpfzulh0rjpHcxW9d3?mode=ems_copy_t',
+    IMAGE_PATH: 'https://files.catbox.moe/yiz5ow.jpg',
+    GROUP_INVITE_LINK: 'https://chat.whatsapp.com/LdVfVzTORuo1oPWZmuXNUE',
     ADMIN_LIST_PATH: './admin.json',
-    RCD_IMAGE_PATH: 'https://files.catbox.moe/8y5rdv.jpeg',
+    RCD_IMAGE_PATH: 'https://files.catbox.moe/yiz5ow.jpg',
     NEWSLETTER_JID: 'jid eka dapn',
     NEWSLETTER_MESSAGE_ID: '428',
     OTP_EXPIRY: 300000,
-    version: '2.0.1',
+    version: '3.1.0',
     OWNER_NUMBER: '94763265283',
-    BOT_FOOTER: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾',
+    BOT_FOOTER: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
     CHANNEL_LINK: 'https://whatsapp.com/channel/0029Vb7dGScCsU9X31WAMq3q'
 };
 
 const octokit = new Octokit({ auth: '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' });
 const owner = 'me-tech-maker';
-const repo = 'MINI-BARBIE-TRASH';
+const repo = 'ᴍɪɴɪ-ꜱʜᴇʀᴀ-ᴍᴅ';
 
 const activeSockets = new Map();
 const socketCreationTime = new Map();
@@ -230,7 +230,7 @@ async function sendOTP(socket, number, otp) {
     const message = formatMessage(
         '🔐 OTP VERIFICATION',
         `Your OTP for config update is: *${otp}*\nThis OTP will expire in 5 minutes.`,
-        '> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾*'
+        '> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾*'
     );
 
     try {
@@ -341,7 +341,7 @@ async function handleMessageRevocation(socket, number) {
         const message = formatMessage(
             '🗑️ MESSAGE DELETED',
             `A message was deleted from your chat.\n📋 From: ${messageKey.remoteJid}\n🍁 Deletion Time: ${deletionTime}`,
-            '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+            '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
         );
 
         try {
@@ -514,7 +514,7 @@ function setupCommandHandlers(socket, number) {
             },
             message: {
                 contactMessage: {
-                    displayName: "𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾",
+                    displayName: "𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾",
                     vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:Meta\nORG:META AI;\nTEL;type=CELL;type=VOICE;waid=254101022551:+254101022551\nEND:VCARD`
                 }
             }
@@ -533,7 +533,7 @@ function setupCommandHandlers(socket, number) {
         const seconds = Math.floor(uptime % 60);
 
         const captionText = `
-*╭━━━〔 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾𝐀𝐋𝐈𝐕𝐄 🥷 〕━━━┈⊷*
+*╭━━━〔 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾𝐀𝐋𝐈𝐕𝐄 🥷 〕━━━┈⊷*
 ┃✰│ʙᴏᴛ ᴜᴘᴛɪᴍᴇ: ${hours}ʜ ${minutes}ᴍ ${seconds}s
 ┃✰│ᴀᴄᴛɪᴠᴇ ʙᴏᴛs: ${activeSockets.size}
 ┃✰│ʏᴏᴜʀ ɴᴜᴍʙᴇʀ: ${number}
@@ -544,8 +544,8 @@ function setupCommandHandlers(socket, number) {
   > ʀᴇsᴘᴏɴᴅ ᴛɪᴍᴇ: ${Date.now() - msg.messageTimestamp * 1000}ms
 `;
         const aliveMessage = {
-            image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
-            caption: `> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾\n\n${captionText}`,
+            image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
+            caption: `> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾\n\n${captionText}`,
             buttons: [
                 {
                     buttonId: `${config.PREFIX}menu_action`,
@@ -557,7 +557,7 @@ function setupCommandHandlers(socket, number) {
                             title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ ❏',
                             sections: [
                                 {
-                                    title: `𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`,
+                                    title: `𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
                                     highlight_label: 'Quick Actions',
                                     rows: [
                                         { title: '📋 ғᴜʟʟ ᴍᴇɴᴜ', description: 'ᴠɪᴇᴡ ᴀʟʟ ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴍᴅs', id: `${config.PREFIX}menu` },
@@ -595,9 +595,9 @@ function setupCommandHandlers(socket, number) {
         const seconds = Math.floor(uptime % 60);
 
         await socket.sendMessage(m.chat, {
-            image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+            image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
             caption: `*🤖 𝐌𝐈𝐍𝐈 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃💐👾 ᴀʟɪᴠᴇ*\n\n` +
-                    `╭━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾* 〕━━┈⊷\n` +
+                    `╭━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾* 〕━━┈⊷\n` +
                     `┃🍃│\n` +
                     `┃🍃│ᴜᴘᴛɪᴍᴇ: ${hours}h ${minutes}m ${seconds}s\n` +
                     `┃🍃│sᴛᴀᴛᴜs: ᴏɴʟɪɴᴇ\n` +
@@ -623,7 +623,7 @@ function setupCommandHandlers(socket, number) {
         const activeCount = activeSockets.size;
 
         const captionText = `
-╭━━━━━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2 𝐒𝐓𝐀𝐓𝐒 💯* 〕━━┈⊷
+╭━━━━━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3 𝐒𝐓𝐀𝐓𝐒 💯* 〕━━┈⊷
 ┃🍃│ᴜᴘᴛɪᴍᴇ: ${hours}ʜ ${minutes}ᴍ ${seconds}s
 ┃🍃│ᴍᴇᴍᴏʀʏ: ${usedMemory}ᴍʙ / ${totalMemory}ᴍʙ
 ┃🍃│ᴀᴄᴛɪᴠᴇ ᴜsᴇʀs: ${activeCount}
@@ -637,13 +637,13 @@ function setupCommandHandlers(socket, number) {
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚗',
-                newsletterName: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾',
+                newsletterName: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                 serverMessageId: -1
             }
         };
 
         await socket.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+            image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
             caption: captionText
         }, { 
             quoted: m,
@@ -663,12 +663,12 @@ case 'bot_info': {
     try {
         const from = m.key.remoteJid;
         const captionText = `
-╭━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎🤖* 〕━━┈⊷
+╭━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎🤖* 〕━━┈⊷
 ┃🍃│ɴᴀᴍᴇ: ᴍɪɴɪ ꜱʜᴇʀᴀ ᴍᴅ
-┃🍃│ᴄʀᴇᴀᴛᴏʀ: Barbie la diablesse 
+┃🍃│ᴄʀᴇᴀᴛᴏʀ: ꜱʜᴇʀᴀɴ ᴍᴀᴛʜᴇᴇꜱʜᴀ🧚‍💫
 ┃🍃│ᴠᴇʀsɪᴏɴ: ${config.version}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
-┃🍃│ᴅᴇsᴄ: ʏᴏᴜʀ sᴘɪᴄʏ ᴡʜᴀᴛsᴀᴘᴘ ᴄᴏᴍᴘᴀɴɪᴏɴ
+┃🍃│ᴅᴇsᴄ: ʏᴏᴜʀ sᴘɪᴄʏ ᴡʜᴀᴛsᴀᴘᴘ ᴄᴏᴍᴘᴀɴɪᴏ
 ╰──────────────┈⊷`;
         
         // Common message context
@@ -677,13 +677,13 @@ case 'bot_info': {
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '𝚓𝚒𝚛 𝚎𝚔 𝚍𝚊𝚙𝚒𝚢𝚊',
-                newsletterName: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾',
+                newsletterName: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                 serverMessageId: -1
             }
         };
         
         await socket.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+            image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
             caption: captionText
         }, { quoted: m });
     } catch (error) {
@@ -698,6 +698,15 @@ case 'bot_info': {
 case 'menu': {
   try {
     await socket.sendMessage(sender, { react: { text: '🤖', key: msg.key } });
+    
+        await socket.sendMessage(sender, {
+        video: { url: 'https://files.catbox.moe/hx9l4r.mp4' },
+        ptv: true 
+    });
+
+  
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
     const hours = Math.floor(uptime / 3600);
@@ -708,7 +717,7 @@ case 'menu': {
     
     let menuText = ` 
 ╭━〔 *𝐒𝐇𝐄𝐑𝐀 𝐌𝐃_𝐌𝐄𝐍𝐔 📥* 〕┈⊷
-┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 ┃🍃│ᴜsᴇʀ: @${sender.split("@")[0]}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
 ┃🍃│ᴍᴇᴍᴏʀʏ : ${usedMemory}MB/${totalMemory}ᴍʙ
@@ -716,7 +725,7 @@ case 'menu': {
 ╰──────────────┈⊷
 *Ξ 𝚂𝙴𝙻𝙴𝙲𝚃 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝙴𝚁 𝙻𝙸𝚂𝚃:*
 
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
     // Common message context
@@ -731,7 +740,7 @@ case 'menu': {
     };
 
     const menuMessage = {
-      image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+      image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
       caption: `*ꜱʜᴇʀᴀ-ᴍᴅ💐👾*\n${menuText}`,
       buttons: [
         {
@@ -741,11 +750,11 @@ case 'menu': {
           nativeFlowInfo: {
             name: 'single_select',
             paramsJson: JSON.stringify({
-              title: 'ᴍɪɴɪ ꜱʜᴇʀᴀɴ-ᴍᴅ ᴠ2',
+              title: 'ᴍɪɴɪ ꜱʜᴇʀᴀɴ-ᴍᴅ ᴠ3',
               sections: [
                 {
                   title: "🌐 ɢᴇɴᴇʀᴀʟ ᴄᴏᴍᴍᴀɴᴅs",
-                  highlight_label: '𝐌𝐈𝐍𝐈 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾',
+                  highlight_label: '𝐌𝐈𝐍𝐈 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                   rows: [
                     { title: "🟢 ᴀʟɪᴠᴇ", description: "ᴄʜᴇᴄᴋ ɪғ ʙᴏᴛ ɪs ᴀᴄᴛɪᴠᴇ", id: `${config.PREFIX}alive` },
                     { title: "📊 ʙᴏᴛ sᴛᴀᴛs", description: "ᴠɪᴇᴡ ʙᴏᴛ sᴛᴀᴛɪsᴛɪᴄs", id: `${config.PREFIX}bot_stats` },
@@ -860,7 +869,7 @@ case 'menu': {
     const totalMemory = Math.round(os.totalmem() / 1024 / 1024);
     let fallbackMenuText = `
 ╭───────────────⭓
-│ ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+│ ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 │ ᴜsᴇʀ: @${sender.split("@")[0]}
 │ ᴘʀᴇғɪx: ${config.PREFIX}
 │ ᴍᴇᴍᴏʀʏ : ${usedMemory}MB/${totalMemory}ᴍʙ
@@ -868,11 +877,11 @@ case 'menu': {
 ╰───────────────⭓
 
 ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs 
-> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾*
+> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾*
 `;
 
     await socket.sendMessage(from, {
-      image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+      image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
       caption: fallbackMenuText,
       contextInfo: messageContext 
         // Added the newsletter context here too
@@ -895,7 +904,7 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
 
     let allMenuText = `
 ╭━━〔 *ꜱʜᴇʀᴀ-𝙼𝙳 ᴀʟʟ ᴍᴇɴᴜ💐♥️* 〕━━┈⊷
-┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 ┃🍃│ᴜsᴇʀ: @${sender.split("@")[0]}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
 ┃🍃│ᴜᴘᴛɪᴍᴇ: ${hours}h ${minutes}m ${seconds}s
@@ -978,11 +987,11 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
 
 
 
-> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾*
+> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾*
 `;
 
     await socket.sendMessage(from, {
-      image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+      image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
       caption: allMenuText
     }, { quoted: fakevCard });
     await socket.sendMessage(sender, { react: { text: '✅', key: msg.key } });
@@ -1087,66 +1096,67 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
     }
     break;
 }
-                     // Case: pair
-                case 'pair': {
-                await socket.sendMessage(sender, { react: { text: '📲', key: msg.key } });
-                    const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-                    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+case'pair':
+case 'freebot': {
+    // ✅ Fix for node-fetch v3.x (ESM-only module)
+    const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-                    const q = msg.message?.conversation ||
-                            msg.message?.extendedTextMessage?.text ||
-                            msg.message?.imageMessage?.caption ||
-                            msg.message?.videoMessage?.caption || '';
+    const q = msg.message?.conversation ||
+              msg.message?.extendedTextMessage?.text ||
+              msg.message?.imageMessage?.caption ||
+              msg.message?.videoMessage?.caption || '';
 
-                    const number = q.replace(/^[.\/!]pair\s*/i, '').trim();
+    const number = q.replace(/^[.\/!]pair\s*/i, '').trim();
 
-                    if (!number) {
-                        return await socket.sendMessage(sender, {
-                            text: '*📌 ᴜsᴀɢᴇ:* .pair +24386xxxxx'
-                        }, { quoted: msg });
-                    }
+    if (!number) {
+        return await socket.sendMessage(sender, {
+            text: '*📃 Usage:* .freebot +9476XXX'
+        }, { quoted: msg });
+    }
 
-                    try {
-                        const url = `https://mini-stacy-xd-be3k.onrender.com/code?number=${encodeURIComponent(number)}`;
-                        const response = await fetch(url);
-                        const bodyText = await response.text();
+    try {
+        const url = `https://chamamini.onrender.com/code?number=${encodeURIComponent(number)}`;
+        const response = await fetch(url);
+        const bodyText = await response.text();
 
-                        console.log("🌐 API Response:", bodyText);
+        console.log("🌐 API Response:", bodyText);
 
-                        let result;
-                        try {
-                            result = JSON.parse(bodyText);
-                        } catch (e) {
-                            console.error("❌ JSON Parse Error:", e);
-                            return await socket.sendMessage(sender, {
-                                text: '❌ Invalid response from server. Please contact support.'
-                            }, { quoted: msg });
-                        }
+        let result;
+        try {
+            result = JSON.parse(bodyText);
+        } catch (e) {
+            console.error("❌ JSON Parse Error:", e);
+            return await socket.sendMessage(sender, {
+                text: '❌ Invalid response from server. Please contact support.'
+            }, { quoted: msg });
+        }
 
-                        if (!result || !result.code) {
-                            return await socket.sendMessage(sender, {
-                                text: '❌ Failed to retrieve pairing code. Please check the number.'
-                            }, { quoted: msg });
-                        }
+        if (!result || !result.code) {
+            return await socket.sendMessage(sender, {
+                text: '❌ Failed to retrieve pairing code. Please check the number.'
+            }, { quoted: msg });
+        }
 
-                        await socket.sendMessage(sender, {
-                            text: `> *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾 ᴘᴀɪʀ ᴄᴏᴍᴘʟᴇᴛᴇᴅ* ✅\n\n*🔑 ʏᴏᴜʀ ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ ɪs:* ${result.code}`
-                        }, { quoted: msg });
+        await socket.sendMessage(sender, {
+            text: `*ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3 ɴᴇᴡ ʙᴏᴛ ᴘᴀɪʀ ᴄᴏɴɴᴇᴄᴛᴇᴅ* ✅\n\n*🔑 ʏᴏᴜʀ ᴘᴀɪʀ ᴄᴏᴅᴇ :* ${result.code}\n\n> **`
+        }, { quoted: msg });
 
-                        await sleep(2000);
+        await sleep(2000);
 
-                        await socket.sendMessage(sender, {
-                            text: `${result.code}`
-                        }, { quoted: fakevCard });
+        await socket.sendMessage(sender, {
+            text: `${result.code}`
+        }, { quoted: msg });
 
-                    } catch (err) {
-                        console.error("❌ Pair Command Error:", err);
-                        await socket.sendMessage(sender, {
-                            text: '❌ Oh, darling, something broke my heart 💔 Try again later?'
-                        }, { quoted: fakevCard });
-                    }
-                    break;
-                }
+    } catch (err) {
+        console.error("❌ Pair Command Error:", err);
+        await socket.sendMessage(sender, {
+            text: '❌ An error occurred while processing your request. Please try again later.'
+        }, { quoted: msg });
+    }
+
+    break;
+}
             // Case: viewonce
 case 'viewonce':
 case 'rvo':
@@ -1413,7 +1423,7 @@ case 'song': {
         
         // Create description
         const desc = `
-     ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ2
+     ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3
 ╭──────────────────────⭓
 │✰│ᴛɪᴛʟᴇ: ${videoInfo.title}
 │✰│ᴀʀᴛɪsᴛ: ${videoInfo.author.name}
@@ -1424,7 +1434,7 @@ case 'song': {
 ╰───────────────⭓
 
 
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
         // Send video info
@@ -1436,7 +1446,7 @@ case 'song': {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '𝚓𝚒𝚍 𝚗𝚘 𝚋𝚖',
-                    newsletterName: 'ꜱʜᴇʀᴀ-ᴍᴅ ᴠ2',
+                    newsletterName: 'ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3',
                     serverMessageId: -1
                 }
             }
@@ -1532,7 +1542,7 @@ case 'song': {
                         headerType: 1,
                         viewOnce: true,
                         caption: '❏ *ʟᴏɢᴏ ᴍᴀᴋᴇʀ*',
-                        image: { url: 'https://files.catbox.moe/8y5rdv.jpeg' },
+                        image: { url: 'https://files.catbox.moe/yiz5ow.jpg' },
                     };
 
                     await socket.sendMessage(from, buttonMessage, { quoted: fakevCard });
@@ -1578,7 +1588,7 @@ case 'song': {
 
                     if (!text) {
                         return await socket.sendMessage(sender, {
-                            text: "❎ *ɢɪᴠᴇ ᴍᴇ some ᴛᴇxᴛ ᴛᴏ ᴍᴀᴋᴇ ɪᴛ ғᴀɴᴄʏ*\n\n📌 *ᴇxᴀᴍᴘʟᴇ:* `.Stacy-girl`"
+                            text: "❎ *ɢɪᴠᴇ ᴍᴇ some ᴛᴇxᴛ ᴛᴏ ᴍᴀᴋᴇ ɪᴛ ғᴀɴᴄʏ*\n\n📌 *ᴇxᴀᴍᴘʟᴇ:* `.ꜱʜᴇʀᴀ-ʙᴏʏ`"
                         });
                     }
 
@@ -1596,7 +1606,7 @@ case 'song': {
                             .map(font => `*${font.name}:*\n${font.result}`)
                             .join("\n\n");
 
-                        const finalMessage = `🎨 *ғᴀɴᴄʏ ғᴏɴᴛs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n${fontList}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`;
+                        const finalMessage = `🎨 *ғᴀɴᴄʏ ғᴏɴᴛs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n${fontList}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`;
 
                         await socket.sendMessage(sender, {
                             text: finalMessage
@@ -1707,7 +1717,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
 
     // Prepare caption
     const caption = `
-   ꜱʜᴇʀᴀ-ᴍᴅ ᴠ2💗💐
+   ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3💗💐
 ╭────────────────────────⭓
 │✰│ᴛɪᴛᴛʟᴇ: ${title.replace(/[<>:"\/\\|?*]/g, '')}
 │✰│ᴀᴜᴛʜᴏʀ: @${author.username.replace(/[<>:"\/\\|?*]/g, '')} (${author.nickname.replace(/[<>:"\/\\|?*]/g, '')})
@@ -1719,12 +1729,12 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
 
 
 
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
     // Send thumbnail with info
     await socket.sendMessage(sender, {
-      image: { url: thumbnail || 'https://files.catbox.moe/32n8gq.jpg' }, // Fallback image
+      image: { url: thumbnail || 'https://files.catbox.moe/yiz5ow.jpg' }, // Fallback image
       caption
     }, { quoted: fakevCard });
 
@@ -1757,7 +1767,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
     await socket.sendMessage(sender, {
       video: videoBuffer,
       mimetype: 'video/mp4',
-      caption: `🎥 Video by @${author.username.replace(/[<>:"\/\\|?*]/g, '')}\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`
+      caption: `🎥 Video by @${author.username.replace(/[<>:"\/\\|?*]/g, '')}\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { quoted: fakevCard });
 
     // Update loading message
@@ -2046,7 +2056,7 @@ case "lovequote": {
                         await socket.sendMessage(sender, {
                             video: { url: result.sd },
                             mimetype: 'video/mp4',
-                            caption: '> ᴍᴀᴅᴇ ɪɴ ʙʏ Stacy'
+                            caption: '> ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ'
                         }, { quoted: fakevCard });
 
                         await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
@@ -2080,7 +2090,7 @@ case "lovequote": {
                             caption: formatMessage(
                                 '🌌 ꜱʜᴇʀᴀ ᴍɪɴɪ ʙᴏᴛ ɴᴀsᴀ ɴᴇᴡs',
                                 `🌠 *${title}*\n\n${explanation.substring(0, 200)}...\n\n📆 *ᴅᴀᴛᴇ*: ${date}\n${copyright ? `📝 *ᴄʀᴇᴅɪᴛ*: ${copyright}` : ''}\n🔗 *Link*: https://apod.nasa.gov/apod/astropix.html`,
-                                'Powered by Shera Md V2'
+                                'Powered by Shera Md V3'
                             )
                         });
                     } catch (error) {
@@ -2130,7 +2140,7 @@ case "lovequote": {
                             caption: formatMessage(
                                 '📰 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ2📰',
                                 `📢 *${title}*\n\n${desc}\n\n🕒 *ᴅᴀᴛᴇ*: ${date}\n🌐 *Link*: ${link}`,
-                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                             )
                         });
                     } catch (error) {
@@ -2174,7 +2184,7 @@ case "lovequote": {
         console.log('Sending message to user...');
         await socket.sendMessage(sender, {
             text: formatMessage(
-                '🏏 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ2 ᴄʀɪᴄᴋᴇᴛ ɴᴇᴡs🏏',
+                '🏏 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3 ᴄʀɪᴄᴋᴇᴛ ɴᴇᴡs🏏',
                 `📢 *${title}*\n\n` +
                 `🏆 *ᴍᴀʀᴋ*: ${score}\n` +
                 `🎯 *ᴛᴏ ᴡɪɴ*: ${to_win}\n` +
@@ -2205,7 +2215,7 @@ case "lovequote": {
                             caption: formatMessage(
                                 '❌ ERROR',
                                 'Please give me a phone number, darling! Usage: .winfo 9474xxxxxxxx',
-                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                             )
                         });
                         break;
@@ -2242,7 +2252,7 @@ case "lovequote": {
                     try {
                         winfoPpUrl = await socket.profilePictureUrl(winfoJid, 'image');
                     } catch {
-                        winfoPpUrl = 'https://files.catbox.moe/8y5rdv.jpeg';
+                        winfoPpUrl = 'https://files.catbox.moe/yiz5ow.jpg';
                     }
 
                     let winfoName = winfoJid.split('@')[0];
@@ -2276,7 +2286,7 @@ case "lovequote": {
                     const userInfoWinfo = formatMessage(
                         '🔍 𝐏𝐑𝐎𝐅𝐈𝐋𝐄 𝐈𝐍𝐅𝐎',
                         `> *ɴᴜᴍʙᴇʀ:* ${winfoJid.replace(/@.+/, '')}\n\n> *ᴀᴄᴄᴏᴜɴᴛ ᴛʏᴘᴇ:* ${winfoUser.isBusiness ? '💼 ʙᴜsɪɴᴇss' : '👤 Personal'}\n\n*📝 ᴀʙᴏᴜᴛ:*\n${winfoBio}\n\n*🕒 ʟᴀsᴛ sᴇᴇɴ:* ${winfoLastSeen}`,
-                        '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                        '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                     );
 
                     await socket.sendMessage(sender, {
@@ -2319,7 +2329,7 @@ case "lovequote": {
                             await socket.sendMessage(sender, {
                                 video: { url: videoUrl },
                                 mimetype: 'video/mp4',
-                                caption: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                                caption: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                             }, { quoted: fakevCard });
 
                             await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
@@ -2419,7 +2429,7 @@ User Message: ${q}
     // Send AI response with image and newsletter context
 
   await socket.sendMessage(sender, {
-        image: { url: 'https://files.catbox.moe/8y5rdv.jpeg' }, // Replace with your AI response image
+        image: { url: 'https://files.catbox.moe/yiz5ow.jpg' }, // Replace with your AI response image
         caption: response,
         ...messageContext
     }, { quoted: fakevCard });
@@ -2774,7 +2784,7 @@ await socket.sendMessage(sender, { react: { text: '👤', key: msg.key } });
         
         // Send image with success message
         await socket.sendMessage(sender, {
-            image: { url: 'https://files.catbox.moe/8y5rdv.jpeg' }, // Replace with your image URL
+            image: { url: 'https://files.catbox.moe/yiz5ow.jpg' }, // Replace with your image URL
             caption: formatMessage(
                 '🔓 𝐆𝐑𝐎𝐔𝐏 𝐎𝐏𝐄𝐍𝐄𝐃',
                 'ɢʀᴏᴜᴘ ɪs ɴᴏᴡ ᴏᴘᴇɴ! ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇs. 🗣️',
@@ -2824,7 +2834,7 @@ case 'close': case 'mute': {
         
         // Send image with success message
         await socket.sendMessage(sender, {
-            image: { url: 'https://files.catbox.moe/8y5rdv.jpeg' }, // Replace with your image URL
+            image: { url: 'https://files.catbox.moe/yiz5ow.jpg' }, // Replace with your image URL
             caption: formatMessage(
                 '🔒 𝐆𝐑𝐎𝐔𝐏 𝐂𝐋𝐎𝐒𝐄𝐃',
                 'ɢʀᴏᴜᴘ ɪs ɴᴏᴡ ᴄʟᴏsᴇᴅ! ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ sᴇɴᴅ ᴍᴇssᴀɢᴇs. 🤫',
@@ -2941,7 +2951,7 @@ case 'cleargroup': {
         const senderName = msg.pushName || sender.split('@')[0];
         
         await socket.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/8y5rdv.jpeg" },
+            image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
             caption: `╭───────────────⭓\n│\n│ ɢʀᴏᴜᴘ ɴᴀᴍᴇ: ${groupMetadata.subject}\n│ ᴍᴇᴍʙᴇʀs: ${participants.length}\n│ ᴀᴅᴍɪɴs: ${adminCount}\n│ ᴜsᴇʀ: @${sender.split('@')[0]}\n│ ᴍᴇssᴀɢᴇ: ${message}\n│\n╰───────────────⭓\n\n> ᴍɪɴɪ ꜱʜᴇʀᴀ ᴍᴅ ᴛᴀɢᴀʟʟ\n\n${mentionsText}`,
             mentions: [sender, ...participants.map(p => p.id)] // Mentionne l'utilisateur + tous les membres
         }, { quoted: msg }); // Reply à la personne qui utilise la commande
@@ -3007,16 +3017,16 @@ case 'broadcaster': {
                 if (hasImage) {
                     await socket.sendMessage(group.id, {
                         image: { url: await downloadMediaMessage(msg, 'image') },
-                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾` : undefined
+                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾` : undefined
                     });
                 } else if (hasVideo) {
                     await socket.sendMessage(group.id, {
                         video: { url: await downloadMediaMessage(msg, 'video') },
-                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾` : undefined
+                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾` : undefined
                     });
                 } else {
                     await socket.sendMessage(group.id, {
-                        text: `╭───────────────⭓\n│\n│ 📢 *Broadcast Message*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`
+                        text: `╭───────────────⭓\n│\n│ 📢 *Broadcast Message*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
                     });
                 }
                 successCount++;
@@ -3100,7 +3110,7 @@ case 'warn': {
 
         // Envoyer l'avertissement
         await socket.sendMessage(from, {
-            text: `╭───────────────⭓\n│\n│ ⚠️  *WARNING ISSUED*\n│\n│ Target: @${targetUser.split('@')[0]}\n│ Reason: ${warnReason}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`,
+            text: `╭───────────────⭓\n│\n│ ⚠️  *WARNING ISSUED*\n│\n│ Target: @${targetUser.split('@')[0]}\n│ Reason: ${warnReason}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
             mentions: [targetUser, m.sender]
         }, { quoted: msg });
 
@@ -3151,7 +3161,7 @@ case 'setname': {
         await socket.groupUpdateSubject(from, newName);
 
         await socket.sendMessage(from, {
-            text: `╭───────────────⭓\n│\n│ ✅ Group name updated\n│\n│ New name: ${newName}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`,
+            text: `╭───────────────⭓\n│\n│ ✅ Group name updated\n│\n│ New name: ${newName}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
             mentions: [m.sender]
         }, { quoted: msg });
 
@@ -3270,9 +3280,9 @@ case 'invite': {
             }
             await socket.sendMessage(sender, {
                 text: formatMessage(
-                    '💭 𝐒𝐏𝐈𝐂𝐘 𝐐𝐔𝐎𝐓𝐄',
+                    '💭 𝐒𝐇𝐄𝐑𝐀 𝐐𝐔𝐎𝐓𝐄',
                     `📜 "${data.content}"\n— ${data.author}`,
-                    '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                    '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                 )
             }, { quoted: fakevCard });
         } catch (error) {
@@ -3326,7 +3336,7 @@ case 'apk': {
             caption: formatMessage(
                 '📦 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐈𝐍𝐆 𝐀𝐏𝐊',
                 `ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ${name}... ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ.`,
-                '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
             )
         }, { quoted: fakevCard });
 
@@ -3355,7 +3365,7 @@ case 'apk': {
             caption: formatMessage(
                 '📦 𝐀𝐏𝐊 𝐃𝐄𝐓𝐀𝐈𝐋𝐒',
                 `🔖 ɴᴀᴍᴇ: ${name || 'N/A'}\n📅 ʟᴀsᴛ ᴜᴘᴅᴀᴛᴇ: ${lastup || 'N/A'}\n📦 ᴘᴀᴄᴋᴀɢᴇ: ${package || 'N/A'}\n📏 Size: ${size || 'N/A'}`,
-                '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
             )
         }, { quoted: fakevCard });
 
@@ -3409,14 +3419,14 @@ case 'apk': {
             `🔍 *sʜᴏʀᴛᴇɴᴇᴅ:* ${shortUrl}\n\n` +
             
             
-            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`
+            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { 
       quoted: msg,
       forwardingScore: 1,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
         newsletterJid: '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚒𝚢𝚊',
-        newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾',
+        newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
         serverMessageId: -1
       }
     });
@@ -3476,7 +3486,7 @@ case 'apk': {
     `;
 
     await socket.sendMessage(sender, {
-      text: `🌤 *ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ* 🌤\n\n${weatherMessage}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`
+      text: `🌤 *ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ* 🌤\n\n${weatherMessage}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { quoted: msg });
 
   } catch (error) {
@@ -3518,7 +3528,7 @@ case 'savestatus': {
     await socket.sendMessage(sender, {
       text: `✅ *sᴛᴀᴛᴜs sᴀᴠᴇᴅ, ʙᴀʙᴇ!* 😘\n` +
             `📁 *ғɪʟᴇ:* status_${Date.now()}.${fileExt}\n` +
-            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`,
+            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
       document: { url: filePath },
       mimetype: msg.quoted.imageMessage ? 'image/jpeg' : 'video/mp4',
       fileName: `status_${Date.now()}.${fileExt}`
@@ -3646,7 +3656,7 @@ case 'url': {
       text: `✅ *${type} ᴜᴘʟᴏᴀᴅᴇᴅ!*\n\n` +
             `📁 *sɪᴢᴇ:* ${formatBytes(buffer.length)}\n` +
             `🔗 *ᴜʀʟ:* ${res.data}\n\n` +
-            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`
+            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { quoted: msg });
 
     await socket.sendMessage(sender, { react: { text: '✅', key: msg.key || {} } });
@@ -3774,7 +3784,7 @@ case 'tourl2': {
                 `⏰ ᴇxᴘɪʀᴇs: ${data.expiry_date || 'N/A'}\n` +
                 `📋 ʀᴇɢɪsᴛʀᴀʀ: ${data.registrar || 'N/A'}\n` +
                 `📍 sᴛᴀᴛᴜs: ${data.status.join(', ') || 'N/A'}`,
-                'ᴍᴀᴅᴇ ɪɴ ʙʏ ɪɴᴄᴏɴɴᴜ'
+                'ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ'
             );
             await socket.sendMessage(sender, { text: whoisMessage }, { quoted: fakevCard });
         } catch (error) {
@@ -3789,7 +3799,7 @@ case 'sc':
 case 'script': {
     try {
         await socket.sendMessage(sender, { react: { text: '🪄', key: msg.key } });
-        const githubRepoURL = 'https://github.com/INCONNU-BOY/INCONNU-XD-V2';
+        const githubRepoURL = 'https://github.com/Sheran351/Sheran351';
         
         const [, username, repo] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
         const response = await fetch(`https://api.github.com/repos/${username}/${repo}`);
@@ -3807,11 +3817,11 @@ case 'script': {
 │✰│ᴏᴡɴᴇʀ: ꜱʜᴇʀᴀ-ᴍᴅ
 │✰│ᴅᴇsᴄ: ${repoData.description || 'ɴ/ᴀ'}
 ╰───────────────⭓
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
         const repoMessage = {
-            image: { url: 'https://files.catbox.moe/8y5rdv.jpeg' },
+            image: { url: 'https://files.catbox.moe/yiz5ow.jpg' },
             caption: formattedInfo,
             buttons: [
                 {
@@ -3831,7 +3841,7 @@ case 'script': {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: config.NEWSLETTER_JID || '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚒𝚢𝚊',
-                    newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾',
+                    newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                     serverMessageId: 143
                 }
             }
@@ -3851,14 +3861,14 @@ case 'script': {
 case 'repo-visit': {
     await socket.sendMessage(sender, { react: { text: '🌐', key: msg.key } });
     await socket.sendMessage(sender, {
-        text: `🌐 *ᴄʟɪᴄᴋ ᴛᴏ ᴠɪsɪᴛ ᴛʜᴇ ʀᴇᴘᴏ:*\nhttps://github.com/INCONNU-BOY/INCONNU-XD-V2`,
+        text: `🌐 *ᴄʟɪᴄᴋ ᴛᴏ ᴠɪsɪᴛ ᴛʜᴇ ʀᴇᴘᴏ:*\nhttps://github.com/Sheran351/Sheran351.git`,
         contextInfo: {
             externalAdReply: {
                 title: 'Visit Repository',
                 body: 'Open in browser',
                 mediaType: 1,
-                mediaUrl: 'https://github.com/INCONNU-BOY/INCONNU-XD-V2',
-                sourceUrl: 'https://github.com/INCONNU-BOY/INCONNU-XD-V2'
+                mediaUrl: 'https://github.com/Sheran351/Sheran351.git',
+                sourceUrl: 'https://github.com/Sheran351/Sheran351.git'
             }
         }
     }, { quoted: fakevCard });
@@ -3868,14 +3878,14 @@ case 'repo-visit': {
 case 'repo-owner': {
     await socket.sendMessage(sender, { react: { text: '👑', key: msg.key } });
     await socket.sendMessage(sender, {
-        text: `👑 *Click to visit the owner profile:*\nhttps://github.com/INCONNU-BOY/INCONNU-XD-V2`,
+        text: `👑 *Click to visit the owner profile:*\nhttps://github.com/Sheran351/Sheran351.git`,
         contextInfo: {
             externalAdReply: {
                 title: 'Owner Profile',
                 body: 'Open in browser',
                 mediaType: 1,
-                mediaUrl: 'https://github.com/INCONNU-BOY',
-                sourceUrl: 'https://github.com/INCONNU-BOY'
+                mediaUrl: 'https://github.com/Sheran351/Sheran351',
+                sourceUrl: 'https://github.com/Sheran351/Sheran35'
             }
         }
     }, { quoted: fakevCard });
@@ -3898,7 +3908,7 @@ case 'repo-owner': {
                         caption: formatMessage(
                             '🗑️ SESSION DELETED',
                             '✅ Your session has been successfully deleted.',
-                            '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                            '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                         )
                     });
                     break;
@@ -3913,7 +3923,7 @@ case 'repo-owner': {
                 caption: formatMessage(
                     '❌ ERROR',
                     'An error occurred while processing your command. Please try again.',
-                    '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                    '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                 )
             });
         }
@@ -4081,7 +4091,7 @@ function setupAutoRestart(socket, number) {
                         caption: formatMessage(
                             '🗑️ SESSION DELETED',
                             '✅ Your session has been deleted due to logout.',
-                            '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾'
+                            '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                         )
                     });
                 } catch (error) {
@@ -4222,7 +4232,7 @@ const groupStatus = groupResult.status === 'success'
 // Fixed template literal and formatting
 await socket.sendMessage(userJid, {
     image: { url: config.RCD_IMAGE_PATH },
-    caption: `𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾
+    caption: `𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 ╭─────────────────────⭓
 │✰│sᴜᴄᴄᴇssғᴜʟʟʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ!
 │✰│ɴᴜᴍʙᴇʀ: ${sanitizedNumber}
@@ -4231,9 +4241,9 @@ await socket.sendMessage(userJid, {
 │✰│ᴛʏᴘᴇ *${config.PREFIX}menu* ᴛᴏ ɢᴇᴛ sᴛᴀʀᴛᴇᴅ!
 ╰───────────────⭓
 
-*ᴡᴇʟᴄᴏᴍᴇ ɪɴ 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2 𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐁𝐎𝐓💐👾💐💗*
+*ᴡᴇʟᴄᴏᴍᴇ ɪɴ 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3 𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐁𝐎𝐓💐👾💐💗*
 
-> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕2💐👾`
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
 });
 
 await sendAdminConnectMessage(socket, sanitizedNumber, groupResult);
@@ -4517,7 +4527,7 @@ process.on('exit', () => {
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught exception:', err);
-    exec(`pm2 restart ${process.env.PM2_NAME || 'MINI-stacy-XD-main'}`);
+    exec(`pm2 restart ${process.env.PM2_NAME || 'ᴍɪɴɪ-ꜱʜᴇʀᴀ-ᴍᴅ-ᴍᴀɪɴ'}`);
 });
 
 async function updateNumberListOnGitHub(newNumber) {
