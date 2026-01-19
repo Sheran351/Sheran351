@@ -2,7 +2,7 @@ const {
     proto,
     downloadContentFromMessage,
     getContentType
-} = require('@whiskeysockets/baileys')
+} = require('baileys')
 const fs = require('fs')
 
 
@@ -216,6 +216,4 @@ const sms = (conn, m) => {
 module.exports = {
     sms,
     downloadMediaMessage
-    }
-
-  
+}
