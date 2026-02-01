@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheran Yt Video Downloader | Premium Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050505; 
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* පසුබිමේ ඇති Gradient වර්ණ */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 0, 0, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .search-gradient {
+            background: linear-gradient(90deg, #ff0000, #0066ff);
+            padding: 1px;
+            border-radius: 1rem;
+        }
+
+        .category-pill {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-pill:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Scrollbar සැකසීම */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff0000; }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [scrolled, setScrolled] = useState(false);
+            const [query, setQuery] = useState("");
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            // පෙන්වීම සඳහා දත්ත කිහිපයක්
+            const dummyData = [
+                { id: 1, title: "Sihinayaki Mata - New Version", artist: "Classical Music", views: "1.2M", time: "04:20" },
+                { id: 2, title: "Lofi Hip Hop Radio 2026", artist: "Sheran Beats", views: "Live", time: "∞" },
+                { id: 3, title: "English Pop Mix - High Quality", artist: "Global Hits", views: "850K", time: "12:45" },
+                { id: 4, title: "8D Cinematic Experience", artist: "Sound Design", views: "3M", time: "05:10" }
+            ];
+
+            return (
+                <div className="min-h-screen">
+                    {/* Header */}
+                    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-3 bg-black/80 backdrop-blur-xl border-b border-white/10' : 'py-6'}`}>
+                        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-600/20">
+                                    <i data-lucide="play" fill="white" className="w-5 h-5"></i>
+                                </div>
+                                <span className="text-2xl font-extrabold tracking-tighter">
+                                    SHERAN <span className="text-red-600">YT</span>
+                                </span>
+                            </div>
+                            <div className="hidden md:flex gap-8 text-sm font-semibold text-gray-400">
+                                <a href="#" className="hover:text-red-500 transition">MP3 Audio</a>
+                                <a href="#" className="hover:text-red-500 transition">MP4 Video</a>
+                                <a href="#" className="hover:text-red-500 transition">About Us</a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <main className="max-w-7xl mx-auto px-6 pt-40 pb-20">
+                        <div className="text-center mb-16">
+                            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-[1.1]">
+                                Fast & Premium <br/>
+                                <span className="bg-gradient-to-r from-red-500 via-white to-blue-500 bg-clip-text text-transparent">Media Downloader</span>
+                            </h1>
+                            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                                YouTube වීඩියෝ සහ සංගීතය ඉතා උසස් තත්ත්වයෙන් (MP3, MP4) පහසුවෙන්ම ඔබේ දුරකථනයට හෝ පරිගණකයට ලබාගන්න.
+                            </p>
+                        </div>
+
+                        {/* Search Section */}
+                        <div className="max-w-3xl mx-auto mb-20">
+                            <div className="search-gradient shadow-2xl shadow-red-600/10">
+                                <div className="bg-[#0f0f0f] rounded-[calc(1rem-1px)] flex items-center p-2">
+                                    <div className="px-4 text-gray-500">
+                                        <i data-lucide="search" className="w-6 h-6"></i>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Song & Video Link Paste..." 
+                                        className="w-full bg-transparent py-4 text-lg outline-none placeholder:text-gray-600"
+                                        value={query}
+                                        onChange={(e) => setQuery(e.target.value)}
+                                    />
+                                    <button className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl font-bold transition-all active:scale-95">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Categories */}
+                            <div className="flex gap-3 overflow-x-auto no-scrollbar mt-8 justify-start md:justify-center">
+                                {["All", "Sinhala", "English", "8D Music", "Lo-fi", "Gaming"].map(cat => (
+                                    <span key={cat} className="category-pill glass-card px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
+                                        {cat}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Results Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {dummyData.map(item => (
+                                <div key={item.id} className="glass-card rounded-3xl overflow-hidden group">
+                                    <div className="relative aspect-video bg-gray-900 overflow-hidden">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                                        <div className="shimmer absolute inset-0 opacity-20"></div>
+                                        <div className="absolute bottom-3 right-3 z-20 bg-black/60 px-2 py-1 rounded text-[10px] font-bold">
+                                            {item.time}
+                                        </div>
+                                        {/* Play Icon on Hover */}
+                                        <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity scale-75 group-hover:scale-100 duration-300">
+                                            <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-xl">
+                                                <i data-lucide="play" fill="white" className="w-6 h-6 ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="p-6">
+                                        <h3 className="font-bold text-sm mb-1 line-clamp-1">{item.title}</h3>
+                                        <p className="text-gray-500 text-xs mb-4">{item.artist}</p>
+                                        <div className="flex justify-between items-center pt-4 border-t border-white/5">
+                                            <span className="text-[10px] text-gray-600 uppercase font-bold">{item.views} VIEWS</span>
+                                            <button className="text-red-500 hover:text-white flex items-center gap-1 text-xs font-bold transition-colors">
+                                                <i data-lucide="download" className="w-4 h-4"></i> Get Link
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="border-t border-white/5 pt-20 pb-10">
+                        <div className="max-w-7xl mx-auto px-6 text-center">
+                            <div className="flex justify-center gap-6 mb-8 text-gray-500">
+                                <i data-lucide="facebook" className="w-5 h-5 hover:text-red-500 cursor-pointer transition"></i>
+                                <i data-lucide="youtube" className="w-5 h-5 hover:text-red-500 cursor-pointer transition"></i>
+                                <i data-lucide="twitter" className="w-5 h-5 hover:text-red-500 cursor-pointer transition"></i>
+                            </div>
+                            <p className="text-gray-600 text-sm">© 2026 Sheran Yt video downloader. All rights reserved.</p>
+                            <div className="mt-4 inline-block px-4 py-1 bg-white/5 rounded-full border border-white/10">
+                                <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gray-400">
+                                    Developed by <span className="text-red-500">Sheran</span>
+                                </span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+
+        // Icons initialize
+        setTimeout(() => lucide.createIcons(), 500);
+    </script>
+</body>
+</html>
