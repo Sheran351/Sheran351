@@ -42,14 +42,14 @@ const config = {
     NEWSLETTER_JID: 'jid eka dapn',
     NEWSLETTER_MESSAGE_ID: '428',
     OTP_EXPIRY: 300000,
-    version: '4.0.2',
+    version: '3.1.0',
     OWNER_NUMBER: '94763265283',
-    BOT_FOOTER: '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+    BOT_FOOTER: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
     CHANNEL_LINK: 'https://whatsapp.com/channel/0029Vb7dGScCsU9X31WAMq3q'
 };
 
 const octokit = new Octokit({ auth: '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' });
-const owner = 'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍';
+const owner = 'me-tech-maker';
 const repo = 'ᴍɪɴɪ-ꜱʜᴇʀᴀ-ᴍᴅ';
 
 const activeSockets = new Map();
@@ -230,7 +230,7 @@ async function sendOTP(socket, number, otp) {
     const message = formatMessage(
         '🔐 OTP VERIFICATION',
         `Your OTP for config update is: *${otp}*\nThis OTP will expire in 5 minutes.`,
-        '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+        '> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾*'
     );
 
     try {
@@ -341,7 +341,7 @@ async function handleMessageRevocation(socket, number) {
         const message = formatMessage(
             '🗑️ MESSAGE DELETED',
             `A message was deleted from your chat.\n📋 From: ${messageKey.remoteJid}\n🍁 Deletion Time: ${deletionTime}`,
-            '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+            '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
         );
 
         try {
@@ -514,7 +514,7 @@ function setupCommandHandlers(socket, number) {
             },
             message: {
                 contactMessage: {
-                    displayName: "> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍",
+                    displayName: "𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾",
                     vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:Meta\nORG:META AI;\nTEL;type=CELL;type=VOICE;waid=254101022551:+254101022551\nEND:VCARD`
                 }
             }
@@ -533,19 +533,19 @@ function setupCommandHandlers(socket, number) {
         const seconds = Math.floor(uptime % 60);
 
         const captionText = `
-*╭━━━〔 > ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍𝐀𝐋𝐈𝐕𝐄 🥷 〕━━━┈⊷*
+*╭━━━〔 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾𝐀𝐋𝐈𝐕𝐄 🥷 〕━━━┈⊷*
 ┃✰│ʙᴏᴛ ᴜᴘᴛɪᴍᴇ: ${hours}ʜ ${minutes}ᴍ ${seconds}s
 ┃✰│ᴀᴄᴛɪᴠᴇ ʙᴏᴛs: ${activeSockets.size}
 ┃✰│ʏᴏᴜʀ ɴᴜᴍʙᴇʀ: ${number}
 ┃✰│ᴠᴇʀsɪᴏɴ: ${config.version}
 ┃✰│ᴍᴇᴍᴏʀʏ ᴜsᴀɢᴇ: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}ᴍʙ
 *╰──────────────┈⊷*
-  > *> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4 ᴍᴀɪɴ*
+  > *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃💐👾 ᴍᴀɪɴ*
   > ʀᴇsᴘᴏɴᴅ ᴛɪᴍᴇ: ${Date.now() - msg.messageTimestamp * 1000}ms
 `;
         const aliveMessage = {
             image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
-            caption: `> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍\n\n${captionText}`,
+            caption: `> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾\n\n${captionText}`,
             buttons: [
                 {
                     buttonId: `${config.PREFIX}menu_action`,
@@ -557,7 +557,7 @@ function setupCommandHandlers(socket, number) {
                             title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ ❏',
                             sections: [
                                 {
-                                    title: `> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`,
+                                    title: `𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
                                     highlight_label: 'Quick Actions',
                                     rows: [
                                         { title: '📋 ғᴜʟʟ ᴍᴇɴᴜ', description: 'ᴠɪᴇᴡ ᴀʟʟ ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴍᴅs', id: `${config.PREFIX}menu` },
@@ -596,8 +596,8 @@ function setupCommandHandlers(socket, number) {
 
         await socket.sendMessage(m.chat, {
             image: { url: "https://files.catbox.moe/yiz5ow.jpg" },
-            caption: `*> 𝐌𝐈𝐍𝐈 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍 ᴀʟɪᴠᴇ*\n\n` +
-                    `╭━━━━〔 > ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍〕━━┈⊷\n` +
+            caption: `*🤖 𝐌𝐈𝐍𝐈 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃💐👾 ᴀʟɪᴠᴇ*\n\n` +
+                    `╭━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾* 〕━━┈⊷\n` +
                     `┃🍃│\n` +
                     `┃🍃│ᴜᴘᴛɪᴍᴇ: ${hours}h ${minutes}m ${seconds}s\n` +
                     `┃🍃│sᴛᴀᴛᴜs: ᴏɴʟɪɴᴇ\n` +
@@ -623,7 +623,7 @@ function setupCommandHandlers(socket, number) {
         const activeCount = activeSockets.size;
 
         const captionText = `
-╭━━━━━━━━〔 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍 〕━━┈⊷
+╭━━━━━━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3 𝐒𝐓𝐀𝐓𝐒 💯* 〕━━┈⊷
 ┃🍃│ᴜᴘᴛɪᴍᴇ: ${hours}ʜ ${minutes}ᴍ ${seconds}s
 ┃🍃│ᴍᴇᴍᴏʀʏ: ${usedMemory}ᴍʙ / ${totalMemory}ᴍʙ
 ┃🍃│ᴀᴄᴛɪᴠᴇ ᴜsᴇʀs: ${activeCount}
@@ -637,7 +637,7 @@ function setupCommandHandlers(socket, number) {
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚗',
-                newsletterName: '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+                newsletterName: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                 serverMessageId: -1
             }
         };
@@ -663,7 +663,7 @@ case 'bot_info': {
     try {
         const from = m.key.remoteJid;
         const captionText = `
-╭━━━〔  ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎🤖 〕━━┈⊷
+╭━━━〔 *𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎🤖* 〕━━┈⊷
 ┃🍃│ɴᴀᴍᴇ: ᴍɪɴɪ ꜱʜᴇʀᴀ ᴍᴅ
 ┃🍃│ᴄʀᴇᴀᴛᴏʀ: ꜱʜᴇʀᴀɴ ᴍᴀᴛʜᴇᴇꜱʜᴀ🧚‍💫
 ┃🍃│ᴠᴇʀsɪᴏɴ: ${config.version}
@@ -677,7 +677,7 @@ case 'bot_info': {
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '𝚓𝚒𝚛 𝚎𝚔 𝚍𝚊𝚙𝚒𝚢𝚊',
-                newsletterName: '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+                newsletterName: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                 serverMessageId: -1
             }
         };
@@ -716,8 +716,8 @@ case 'menu': {
     const totalMemory = Math.round(os.totalmem() / 1024 / 1024);
     
     let menuText = ` 
-╭━〔 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞_𝐌𝐄𝐍𝐔 📥* 〕┈⊷
-┃🍃│ʙᴏᴛ : > ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+╭━〔 *𝐒𝐇𝐄𝐑𝐀 𝐌𝐃_𝐌𝐄𝐍𝐔 📥* 〕┈⊷
+┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 ┃🍃│ᴜsᴇʀ: @${sender.split("@")[0]}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
 ┃🍃│ᴍᴇᴍᴏʀʏ : ${usedMemory}MB/${totalMemory}ᴍʙ
@@ -725,7 +725,7 @@ case 'menu': {
 ╰──────────────┈⊷
 *Ξ 𝚂𝙴𝙻𝙴𝙲𝚃 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝙴𝚁 𝙻𝙸𝚂𝚃:*
 
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
     // Common message context
@@ -734,7 +734,7 @@ case 'menu': {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚗',
-            newsletterName: '> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+            newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃',
             serverMessageId: -1
         }
     };
@@ -745,16 +745,16 @@ case 'menu': {
       buttons: [
         {
           buttonId: `${config.PREFIX}quick_commands`,
-          buttonText: { displayText: 'ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ4' },
+          buttonText: { displayText: 'ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ1' },
           type: 4,
           nativeFlowInfo: {
             name: 'single_select',
             paramsJson: JSON.stringify({
-              title: 'ᴍɪɴɪ ꜱʜᴇʀᴀɴ-ᴍᴅ ᴠ4',
+              title: 'ᴍɪɴɪ ꜱʜᴇʀᴀɴ-ᴍᴅ ᴠ3',
               sections: [
                 {
                   title: "🌐 ɢᴇɴᴇʀᴀʟ ᴄᴏᴍᴍᴀɴᴅs",
-                  highlight_label: '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+                  highlight_label: '𝐌𝐈𝐍𝐈 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                   rows: [
 
                     { title: "🟢 ᴀʟɪᴠᴇ", description: "ᴄʜᴇᴄᴋ ɪғ ʙᴏᴛ ɪs ᴀᴄᴛɪᴠᴇ", id: `${config.PREFIX}alive` },
@@ -782,8 +782,7 @@ case 'menu': {
                     { title: "👀 ᴠɪᴇᴡᴏɴᴄᴇ", description: "ᴀᴄᴄᴇss ᴠɪᴇᴡ-ᴏɴᴄᴇ ᴍᴇᴅɪᴀ", id: `${config.PREFIX}viewonce` },
                     { title: "🗣️ ᴛᴛs", description: "ᴛʀᴀɴsᴄʀɪʙᴇ [ɴᴏᴛ ɪᴍᴘʟᴇᴍᴇɴᴛᴇᴅ]", id: `${config.PREFIX}tts` },
                     { title: "🎬 ᴛs", description: "ᴛᴇʀᴀʙᴏx ᴅᴏᴡɴʟᴏᴀᴅᴇʀ [ɴᴏᴛ ɪᴍᴘʟᴇᴍᴇɴᴛᴇᴅ]", id: `${config.PREFIX}ts` },
-                    { title: "🖼️ sᴛɪᴄᴋᴇʀ", description: "ᴄᴏɴᴠᴇʀᴛ ɪᴍᴀɢᴇ/ᴠɪᴅᴇᴏ ᴛᴏ sᴛɪᴄᴋᴇʀ", id: `${config.PREFIX}sticker` }
-                    { title: "🖇️ ᴍᴇᴅɪᴀꜰɪʀᴇ", description: "ᴍᴇᴅɪᴀꜰɪʀᴇ ʟɪɴᴋ ᴅᴏᴡɴʟᴏᴀᴅ", id: `${config.PREFIX}sticker` }
+                    { title: "🖼️ sᴛɪᴄᴋᴇʀ", description: "ᴄᴏɴᴠᴇʀᴛ ɪᴍᴀɢᴇ/ᴠɪᴅᴇᴏ ᴛᴏ sᴛɪᴄᴋᴇʀ [ɴᴏᴛ ɪᴍᴘʟᴇᴍᴇɴᴛᴇᴅ]", id: `${config.PREFIX}sticker` }
                   ]
                 },
                 {
@@ -840,7 +839,7 @@ case 'menu': {
                     { title: "🗑️ ᴅᴇʟᴇᴛᴇ ᴍᴇ", description: "ʀᴇᴍᴏᴠᴇ ʏᴏᴜʀ ᴅᴀᴛᴀ [ɴᴏᴛ ɪᴍᴘʟᴇᴍᴇɴᴛᴇᴅ]", id: `${config.PREFIX}deleteme` },
                     { title: "🌦️ ᴡᴇᴀᴛʜᴇʀ", description: "ɢᴇᴛ ᴡᴇᴀᴛʜᴇʀ ғᴏʀᴇᴄᴀsᴛ", id: `${config.PREFIX}weather` },
                     { title: "🔗 sʜᴏʀᴛᴜʀʟ", description: "ᴄʀᴇᴀᴛᴇ sʜᴏʀᴛᴇɴᴇᴅ ᴜʀʟ", id: `${config.PREFIX}shorturl` },
-                    { title: "📤 ᴛᴏᴜʀʟ", description: "ᴜᴘʟᴏᴀᴅ ᴍᴇᴅɪᴀ ᴛᴏ ʟɪɴᴋ", id: `${config.PREFIX}tourl` },
+                    { title: "📤 ᴛᴏᴜʀʟ2", description: "ᴜᴘʟᴏᴀᴅ ᴍᴇᴅɪᴀ ᴛᴏ ʟɪɴᴋ", id: `${config.PREFIX}tourl2` },
                     { title: "📦 ᴀᴘᴋ", description: "ᴅᴏᴡɴʟᴏᴀᴅ ᴀᴘᴋ ғɪʟᴇs", id: `${config.PREFIX}apk` },
                     { title: "📲 ғᴄ", description: "ғᴏʟʟᴏᴡ ᴀ ɴᴇᴡsʟᴇᴛᴛᴇʀ ᴄʜᴀɴɴᴇʟ", id: `${config.PREFIX}fc` }
                   ]
@@ -872,7 +871,7 @@ case 'menu': {
     const totalMemory = Math.round(os.totalmem() / 1024 / 1024);
     let fallbackMenuText = `
 ╭───────────────⭓
-│ ʙᴏᴛ : ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+│ ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 │ ᴜsᴇʀ: @${sender.split("@")[0]}
 │ ᴘʀᴇғɪx: ${config.PREFIX}
 │ ᴍᴇᴍᴏʀʏ : ${usedMemory}MB/${totalMemory}ᴍʙ
@@ -880,7 +879,7 @@ case 'menu': {
 ╰───────────────⭓
 
 ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs 
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾*
 `;
 
     await socket.sendMessage(from, {
@@ -906,8 +905,8 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
     
 
     let allMenuText = `
-╭━━〔 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ ᴍᴇɴᴜ💐♥️* 〕━━┈⊷
-┃🍃│ʙᴏᴛ : ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+╭━━〔 *ꜱʜᴇʀᴀ-𝙼𝙳 ᴀʟʟ ᴍᴇɴᴜ💐♥️* 〕━━┈⊷
+┃🍃│ʙᴏᴛ : 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 ┃🍃│ᴜsᴇʀ: @${sender.split("@")[0]}
 ┃🍃│ᴘʀᴇғɪx: ${config.PREFIX}
 ┃🍃│ᴜᴘᴛɪᴍᴇ: ${hours}h ${minutes}m ${seconds}s
@@ -941,7 +940,6 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
 │ ✯ ᴛᴛs
 │ ✯ ᴛs
 │ ✯ sᴛɪᴄᴋᴇʀ
-│ ✯ ᴍᴇᴅɪᴀꜰɪʀᴇ
 ╰──────────────────⭓
 
 ⭓───────────────⭓『 👥 ɢʀᴏᴜᴘ 』
@@ -984,14 +982,14 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
 │ ✯ ᴅᴇʟᴇᴛᴇᴍᴇ
 │ ✯ ᴡᴇᴀᴛʜᴇʀ
 │ ✯ sʜᴏʀᴛᴜʀʟ
-│ ✯ ᴛᴏᴜʀʟ
+│ ✯ ᴛᴏᴜʀʟ2
 │ ✯ ᴀᴘᴋ
 │ ✯ ғᴄ
 ╰──────────────────⭓
 
 
 
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+> *𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾*
 `;
 
     await socket.sendMessage(from, {
@@ -1143,7 +1141,7 @@ case 'freebot': {
         }
 
         await socket.sendMessage(sender, {
-            text: `*ꜱʜᴇʀᴀ-ᴍᴅ ᴠ4 ɴᴇᴡ ʙᴏᴛ ᴘᴀɪʀ ᴄᴏɴɴᴇᴄᴛᴇᴅ* ✅\n\n*🔑 ʏᴏᴜʀ ᴘᴀɪʀ ᴄᴏᴅᴇ :* ${result.code}\n\n> **`
+            text: `*ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3 ɴᴇᴡ ʙᴏᴛ ᴘᴀɪʀ ᴄᴏɴɴᴇᴄᴛᴇᴅ* ✅\n\n*🔑 ʏᴏᴜʀ ᴘᴀɪʀ ᴄᴏᴅᴇ :* ${result.code}\n\n> **`
         }, { quoted: msg });
 
         await sleep(2000);
@@ -1518,7 +1516,7 @@ case 'song': {
         
         // Create description
         const desc = `
-     ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ4
+     ᴍɪɴɪ ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3
 ╭──────────────────────⭓
 │✰│ᴛɪᴛʟᴇ: ${videoInfo.title}
 │✰│ᴀʀᴛɪsᴛ: ${videoInfo.author.name}
@@ -1529,7 +1527,7 @@ case 'song': {
 ╰───────────────⭓
 
 
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
         // Send video info
@@ -1701,7 +1699,7 @@ case 'song': {
                             .map(font => `*${font.name}:*\n${font.result}`)
                             .join("\n\n");
 
-                        const finalMessage = `🎨 *ғᴀɴᴄʏ ғᴏɴᴛs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n${fontList}\n\n> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`;
+                        const finalMessage = `🎨 *ғᴀɴᴄʏ ғᴏɴᴛs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n${fontList}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`;
 
                         await socket.sendMessage(sender, {
                             text: finalMessage
@@ -1812,7 +1810,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
 
     // Prepare caption
     const caption = `
-   ꜱʜᴇʀᴀ-ᴍᴅ ᴠ4💗💐
+   ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3💗💐
 ╭────────────────────────⭓
 │✰│ᴛɪᴛᴛʟᴇ: ${title.replace(/[<>:"\/\\|?*]/g, '')}
 │✰│ᴀᴜᴛʜᴏʀ: @${author.username.replace(/[<>:"\/\\|?*]/g, '')} (${author.nickname.replace(/[<>:"\/\\|?*]/g, '')})
@@ -1824,7 +1822,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
 
 
 
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
     // Send thumbnail with info
@@ -1862,7 +1860,7 @@ const TIKTOK_API_KEY = process.env.TIKTOK_API_KEY || 'free_key@maher_apis'; // F
     await socket.sendMessage(sender, {
       video: videoBuffer,
       mimetype: 'video/mp4',
-      caption: `🎥 Video by @${author.username.replace(/[<>:"\/\\|?*]/g, '')}\n> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
+      caption: `🎥 Video by @${author.username.replace(/[<>:"\/\\|?*]/g, '')}\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { quoted: fakevCard });
 
     // Update loading message
@@ -2233,9 +2231,9 @@ case "lovequote": {
                         await socket.sendMessage(sender, {
                             image: { url: thumbnailUrl },
                             caption: formatMessage(
-                                '📰 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ4📰',
+                                '📰 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ2📰',
                                 `📢 *${title}*\n\n${desc}\n\n🕒 *ᴅᴀᴛᴇ*: ${date}\n🌐 *Link*: ${link}`,
-                                '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                             )
                         });
                     } catch (error) {
@@ -2279,7 +2277,7 @@ case "lovequote": {
         console.log('Sending message to user...');
         await socket.sendMessage(sender, {
             text: formatMessage(
-                '🏏 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ4 ᴄʀɪᴄᴋᴇᴛ ɴᴇᴡs🏏',
+                '🏏 ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3 ᴄʀɪᴄᴋᴇᴛ ɴᴇᴡs🏏',
                 `📢 *${title}*\n\n` +
                 `🏆 *ᴍᴀʀᴋ*: ${score}\n` +
                 `🎯 *ᴛᴏ ᴡɪɴ*: ${to_win}\n` +
@@ -2310,7 +2308,7 @@ case "lovequote": {
                             caption: formatMessage(
                                 '❌ ERROR',
                                 'Please give me a phone number, darling! Usage: .winfo 9474xxxxxxxx',
-                                '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                                '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                             )
                         });
                         break;
@@ -2381,7 +2379,7 @@ case "lovequote": {
                     const userInfoWinfo = formatMessage(
                         '🔍 𝐏𝐑𝐎𝐅𝐈𝐋𝐄 𝐈𝐍𝐅𝐎',
                         `> *ɴᴜᴍʙᴇʀ:* ${winfoJid.replace(/@.+/, '')}\n\n> *ᴀᴄᴄᴏᴜɴᴛ ᴛʏᴘᴇ:* ${winfoUser.isBusiness ? '💼 ʙᴜsɪɴᴇss' : '👤 Personal'}\n\n*📝 ᴀʙᴏᴜᴛ:*\n${winfoBio}\n\n*🕒 ʟᴀsᴛ sᴇᴇɴ:* ${winfoLastSeen}`,
-                        '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                        '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                     );
 
                     await socket.sendMessage(sender, {
@@ -2424,7 +2422,7 @@ case "lovequote": {
                             await socket.sendMessage(sender, {
                                 video: { url: videoUrl },
                                 mimetype: 'video/mp4',
-                                caption: '> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                                caption: '> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                             }, { quoted: fakevCard });
 
                             await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
@@ -3112,16 +3110,16 @@ case 'broadcaster': {
                 if (hasImage) {
                     await socket.sendMessage(group.id, {
                         image: { url: await downloadMediaMessage(msg, 'image') },
-                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍` : undefined
+                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾` : undefined
                     });
                 } else if (hasVideo) {
                     await socket.sendMessage(group.id, {
                         video: { url: await downloadMediaMessage(msg, 'video') },
-                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍` : undefined
+                        caption: broadcastMessage ? `╭───────────────⭓\n│\n│ 📢 *Broadcast*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾` : undefined
                     });
                 } else {
                     await socket.sendMessage(group.id, {
-                        text: `╭───────────────⭓\n│\n│ 📢 *Broadcast Message*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
+                        text: `╭───────────────⭓\n│\n│ 📢 *Broadcast Message*\n│\n│ ${broadcastMessage}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
                     });
                 }
                 successCount++;
@@ -3205,7 +3203,7 @@ case 'warn': {
 
         // Envoyer l'avertissement
         await socket.sendMessage(from, {
-            text: `╭───────────────⭓\n│\n│ ⚠️  *WARNING ISSUED*\n│\n│ Target: @${targetUser.split('@')[0]}\n│ Reason: ${warnReason}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`,
+            text: `╭───────────────⭓\n│\n│ ⚠️  *WARNING ISSUED*\n│\n│ Target: @${targetUser.split('@')[0]}\n│ Reason: ${warnReason}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
             mentions: [targetUser, m.sender]
         }, { quoted: msg });
 
@@ -3256,7 +3254,7 @@ case 'setname': {
         await socket.groupUpdateSubject(from, newName);
 
         await socket.sendMessage(from, {
-            text: `╭───────────────⭓\n│\n│ ✅ Group name updated\n│\n│ New name: ${newName}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`,
+            text: `╭───────────────⭓\n│\n│ ✅ Group name updated\n│\n│ New name: ${newName}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
             mentions: [m.sender]
         }, { quoted: msg });
 
@@ -3377,7 +3375,7 @@ case 'invite': {
                 text: formatMessage(
                     '💭 𝐒𝐇𝐄𝐑𝐀 𝐐𝐔𝐎𝐓𝐄',
                     `📜 "${data.content}"\n— ${data.author}`,
-                    'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                    '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                 )
             }, { quoted: fakevCard });
         } catch (error) {
@@ -3431,7 +3429,7 @@ case 'apk': {
             caption: formatMessage(
                 '📦 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐈𝐍𝐆 𝐀𝐏𝐊',
                 `ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ${name}... ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ.`,
-                'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
             )
         }, { quoted: fakevCard });
 
@@ -3460,7 +3458,7 @@ case 'apk': {
             caption: formatMessage(
                 '📦 𝐀𝐏𝐊 𝐃𝐄𝐓𝐀𝐈𝐋𝐒',
                 `🔖 ɴᴀᴍᴇ: ${name || 'N/A'}\n📅 ʟᴀsᴛ ᴜᴘᴅᴀᴛᴇ: ${lastup || 'N/A'}\n📦 ᴘᴀᴄᴋᴀɢᴇ: ${package || 'N/A'}\n📏 Size: ${size || 'N/A'}`,
-                'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
             )
         }, { quoted: fakevCard });
 
@@ -3514,14 +3512,14 @@ case 'apk': {
             `🔍 *sʜᴏʀᴛᴇɴᴇᴅ:* ${shortUrl}\n\n` +
             
             
-            `> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
+            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { 
       quoted: msg,
       forwardingScore: 1,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
         newsletterJid: '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚒𝚢𝚊',
-        newsletterName: 'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+        newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
         serverMessageId: -1
       }
     });
@@ -3581,7 +3579,7 @@ case 'apk': {
     `;
 
     await socket.sendMessage(sender, {
-      text: `🌤 *ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ* 🌤\n\n${weatherMessage}\n\n> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
+      text: `🌤 *ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ* 🌤\n\n${weatherMessage}\n\n> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { quoted: msg });
 
   } catch (error) {
@@ -3623,7 +3621,7 @@ case 'savestatus': {
     await socket.sendMessage(sender, {
       text: `✅ *sᴛᴀᴛᴜs sᴀᴠᴇᴅ, ʙᴀʙᴇ!* 😘\n` +
             `📁 *ғɪʟᴇ:* status_${Date.now()}.${fileExt}\n` +
-            `> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`,
+            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`,
       document: { url: filePath },
       mimetype: msg.quoted.imageMessage ? 'image/jpeg' : 'video/mp4',
       fileName: `status_${Date.now()}.${fileExt}`
@@ -3662,114 +3660,6 @@ case 's': {
     } catch (error) {
         console.error('Error in .sticker command:', error);
         await socket.sendMessage(from, { text: '💔 ғᴀɪʟᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ. ᴛʀʏ ᴀɢᴀɪɴ!' }, { quoted: msg });
-    }
-    break;
-}
-
-case 'mediafire':
-case 'mf':
-case 'mfdl': {
-    try {
-        const text = (msg.message.conversation || msg.message.extendedTextMessage?.text || '').trim();
-        const url = text.split(" ")[1]; // .mediafire <link> 
-
-        // ✅ Load bot name dynamically
-        const sanitized = (number || '').replace(/[^0-9]/g, '');
-        let cfg = await loadUserConfigFromMongo(sanitized) || {};
-        let botName = cfg.botName || 'ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3 ʙᴏᴛ';
-
-        // ✅ Fake Meta contact message (like Facebook style)
-        const shonux = {
-            key: {
-                remoteJid: "status@broadcast",
-                participant: "0@s.whatsapp.net",
-                fromMe: false,
-                id: "META_AI_FAKE_ID_MEDIAFIRE"
-            },
-            message: {
-                contactMessage: {
-                    displayName: botName,
-                    vcard: `BEGIN:VCARD
-VERSION:3.0
-N:${botName};;;;
-FN:${botName}
-ORG:Meta Platforms
-TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
-END:VCARD`
-                }
-            }
-        };
-
-        if (!url) {
-            return await socket.sendMessage(sender, {
-                text: '🚫 *Please send a MediaFire link.*\n\nExample: .mediafire <url>'
-            }, { quoted: shonux });
-        }
-
-        // ⏳ Notify start
-        await socket.sendMessage(sender, { react: { text: '📥', key: msg.key } });
-        await socket.sendMessage(sender, { text: '*⏳ Fetching MediaFire file info...*' }, { quoted: shonux });
-
-        // 🔹 Call API
-        let api = `https://tharuzz-ofc-apis.vercel.app/api/download/mediafire?url=${encodeURIComponent(url)}`;
-        let { data } = await axios.get(api);
-
-        if (!data.success || !data.result) {
-            return await socket.sendMessage(sender, { text: '❌ *Failed to fetch MediaFire file.*' }, { quoted: ꜱʜᴇʀᴀ });
-        }
-
-        const result = data.result;
-        const title = result.title || result.filename;
-        const filename = result.filename;
-        const fileSize = result.size;
-        const downloadUrl = result.url;
-
-        const caption = `📦 *${title}*\n\n` +
-                        `📁 *Filename:* ${filename}\n` +
-                        `📏 *Size:* ${fileSize}\n` +
-                        `🌐 *From:* ${result.from}\n` +
-                        `📅 *Date:* ${result.date}\n` +
-                        `🕑 *Time:* ${result.time}\n\n` +
-                        `✅ Downloaded by ${botName}`;
-
-        // 🔹 Send file automatically (document type for .zip etc.)
-        await socket.sendMessage(sender, {
-            document: { url: downloadUrl },
-            fileName: filename,
-            mimetype: 'application/octet-stream',
-            caption: caption
-        }, { quoted: shonux });
-
-    } catch (err) {
-        console.error("Error in MediaFire downloader:", err);
-
-        // ✅ In catch also send Meta mention style
-        const sanitized = (number || '').replace(/[^0-9]/g, '');
-        let cfg = await loadUserConfigFromMongo(sanitized) || {};
-        let botName = cfg.botName || 'ꜱʜᴇʀᴀ-ᴍᴅ ᴠ3';
-
-        const shonux = {
-            key: {
-                remoteJid: "status@broadcast",
-                participant: "0@s.whatsapp.net",
-                fromMe: false,
-                id: "META_AI_FAKE_ID_MEDIAFIRE"
-            },
-            message: {
-                contactMessage: {
-                    displayName: botName,
-                    vcard: `BEGIN:VCARD
-VERSION:3.0
-N:${botName};;;;
-FN:${botName}
-ORG:Meta Platforms
-TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
-END:VCARD`
-                }
-            }
-        };
-
-        await socket.sendMessage(sender, { text: '*❌ Internal Error. Please try again later.*' }, { quoted: shonux });
     }
     break;
 }
@@ -3859,7 +3749,7 @@ case 'url': {
       text: `✅ *${type} ᴜᴘʟᴏᴀᴅᴇᴅ!*\n\n` +
             `📁 *sɪᴢᴇ:* ${formatBytes(buffer.length)}\n` +
             `🔗 *ᴜʀʟ:* ${res.data}\n\n` +
-            `> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
+            `> © 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
     }, { quoted: msg });
 
     await socket.sendMessage(sender, { react: { text: '✅', key: msg.key || {} } });
@@ -3884,161 +3774,87 @@ case 'url': {
   }
   break;
 }
+case 'tourl2': {
+  try {
+    await socket.sendMessage(sender, { react: { text: '📤', key: msg.key || {} } });
 
-case 'tourl':
-case 'imgtourl':
-case 'url':
-case 'geturl':
-case 'upload': {
-    const axios = require('axios');
-    const FormData = require('form-data');
-    const fs = require('fs');
-    const os = require('os');
-    const path = require('path');
+    console.log('Message:', JSON.stringify(msg, null, 2));
+    const quoted = msg.quoted || msg;
+    console.log('Quoted:', JSON.stringify(quoted, null, 2));
+    const mime = quoted.mimetype || (quoted.message ? Object.keys(quoted.message)[0] : '');
+
+    console.log('MIME Type or Message Type:', mime);
+
+    // Map message types to MIME types if mimetype is unavailable
+    const mimeMap = {
+      imageMessage: 'image/jpeg',
+      videoMessage: 'video/mp4',
+      audioMessage: 'audio/mp3'
+    };
+    const effectiveMime = mimeMap[mime] || mime;
+
+    if (!effectiveMime || !['image', 'video', 'audio'].some(type => effectiveMime.includes(type))) {
+      await socket.sendMessage(sender, {
+        text: `❌ *ʀᴇᴘʟʏ ᴛᴏ ɪᴍᴀɢᴇ, ᴀᴜᴅɪᴏ, ᴏʀ ᴠɪᴅᴇᴏ!*\n` +
+              `ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʏᴘᴇ: ${effectiveMime || 'none'}`
+      }, { quoted: msg });
+      break;
+    }
 
     await socket.sendMessage(sender, {
-        react: {
-            text: '🌿',
-            key: msg.key
-        }
-    });
-    
-    const quoted = msg.message?.extendedTextMessage?.contextInfo;
+      text: `⏳ *ᴜᴘʟᴏᴀᴅɪɴɢ ғɪʟᴇ...*`
+    }, { quoted: msg });
 
-    if (!quoted || !quoted.quotedMessage) {
-        return await socket.sendMessage(sender, {
-            text: '❌ Please reply to an image, video, or audio file with .tourl'
-        }, { quoted: rashuminibot });
+    const buffer = await socket.downloadMediaMessage(quoted);
+    if (!buffer || buffer.length === 0) {
+      throw new Error('Failed to download media: Empty buffer');
     }
 
-    const quotedMsg = {
-        key: {
-            remoteJid: sender,
-            id: quoted.stanzaId,
-            participant: quoted.participant
-        },
-        message: quoted.quotedMessage
-    };
-
-    let mediaBuffer;
-    let mimeType;
-    let fileName;
-
-    if (quoted.quotedMessage.imageMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = 'image/jpeg';
-        fileName = 'image.jpg';
-    } else if (quoted.quotedMessage.videoMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = 'video/mp4';
-        fileName = 'video.mp4';
-    } else if (quoted.quotedMessage.audioMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = 'audio/mpeg';
-        fileName = 'audio.mp3';
-    } else if (quoted.quotedMessage.documentMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = quoted.quotedMessage.documentMessage.mimetype;
-        fileName = quoted.quotedMessage.documentMessage.fileName || 'document';
-    } else {
-        return await socket.sendMessage(sender, {
-            text: '❌ Please reply to a valid media file (image, video, audio, or document)'
-        }, { quoted: rashuminibot });
-    }
-
-    const tempFilePath = path.join(os.tmpdir(), `catbox_upload_${Date.now()}`);
-    fs.writeFileSync(tempFilePath, mediaBuffer);
+    const ext = effectiveMime.includes('image/jpeg') ? '.jpg' :
+                effectiveMime.includes('image/png') ? '.png' :
+                effectiveMime.includes('video') ? '.mp4' :
+                effectiveMime.includes('audio') ? '.mp3' : '.bin';
+    const name = `file_${Date.now()}${ext}`;
+    const tmp = path.join(os.tmpdir(), `catbox_${Date.now()}${ext}`);
+    fs.writeFileSync(tmp, buffer);
+    console.log('Saved file to:', tmp);
 
     const form = new FormData();
-    form.append('fileToUpload', fs.createReadStream(tempFilePath), fileName);
+    form.append('fileToUpload', fs.createReadStream(tmp), name);
     form.append('reqtype', 'fileupload');
 
-    const response = await axios.post('https://catbox.moe/user/api.php', form, {
-        headers: form.getHeaders()
+    const res = await axios.post('https://catbox.moe/user/api.php', form, {
+      headers: form.getHeaders()
     });
 
-    if (!response.data) {
-        fs.unlinkSync(tempFilePath);
-        return await socket.sendMessage(sender, {
-            text: '❌ Error uploading to Catbox'
-        }, { quoted: rashuminibot });
+    fs.unlinkSync(tmp);
+
+    if (!res.data || res.data.includes('error')) {
+      throw new Error(`Upload failed: ${res.data || 'No response data'}`);
     }
 
-    const mediaUrl = response.data.trim();
-    fs.unlinkSync(tempFilePath);
+    const type = effectiveMime.includes('image') ? 'ɪᴍᴀɢᴇ' :
+                 effectiveMime.includes('video') ? 'ᴠɪᴅᴇᴏ' :
+                 effectiveMime.includes('audio') ? 'ᴀᴜᴅɪᴏ' : 'ғɪʟᴇ';
 
-    let mediaType = 'File';
-    if (mimeType.includes('image')) mediaType = 'Image';
-    else if (mimeType.includes('video')) mediaType = 'Video';
-    else if (mimeType.includes('audio')) mediaType = 'Audio';
+    await socket.sendMessage(sender, {
+      text: `✅ *${type} ᴜᴘʟᴏᴀᴅᴇᴅ!*\n\n` +
+            `📁 *sɪᴢᴇ:* ${formatBytes(buffer.length)}\n` +
+            `🔗 *ᴜʀʟ:* ${res.data}\n\n` +
+            `© ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ💐💗`
+    }, { quoted: msg });
 
-    const formatBytes = (bytes) => {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-    };
-
-    const responseText = `  
-╭━━━━━━━━━━━━━━━━━●◌
-│ • *${mediaType} Uploaded Successfully*
-│ • Size: *${formatBytes(mediaBuffer.length)}*
-│ • URL: *${mediaUrl}*
-╰━━━━━━━━━━━━━━━━━●◌
-
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`;
-
-    const uploadMsg = generateWAMessageFromContent(sender, {
-        viewOnceMessage: {
-            message: {
-                messageContextInfo: {
-                    deviceListMetadata: {},
-                    deviceListMetadataVersion: 2
-                },
-                interactiveMessage: proto.Message.InteractiveMessage.create({
-                    body: proto.Message.InteractiveMessage.Body.create({
-                        text: responseText
-                    }),
-                    header: proto.Message.InteractiveMessage.Header.create({
-                        title: '*🖇 SHERA URL UPLOAD DONE  ✅*',
-                        subtitle: '',
-                        hasMediaAttachment: false
-                    }),
-                    nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                        buttons: [
-                            {
-                                name: 'cta_copy',
-                                buttonParamsJson: JSON.stringify({
-                                    display_text: 'Copy Url',
-                                    id: mediaUrl,
-                                    copy_code: mediaUrl
-                                })
-                            }
-                        ]
-                    })
-                })
-            }
-        }
-    }, {});
-
-    await socket.relayMessage(sender, uploadMsg.message, {
-        quoted: rashuminibot
-    });
-
-    break;
+    await socket.sendMessage(sender, { react: { text: '✅', key: msg.key || {} } });
+  } catch (error) {
+    console.error('tourl2 error:', error.message, error.stack);
+    await socket.sendMessage(sender, {
+      text: `❌ *ᴏʜ, ʟᴏᴠᴇ, ᴄᴏᴜʟᴅɴ'ᴛ ᴜᴘʟᴏᴀᴅ ᴛʜᴀᴛ ғɪʟᴇ! 😢*\n` +
+            `ᴇʀʀᴏʀ: ${error.message || 'sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ'}\n` +
+            `💡 *ᴛʀʏ ᴀɢᴀɪɴ, ᴅᴀʀʟɪɴɢ?*`
+    }, { quoted: msg });
+    await socket.sendMessage(sender, { react: { text: '❌', key: msg.key || {} } });
+  }
+  break;
 }
     
     case 'whois': {
@@ -4094,7 +3910,7 @@ case 'script': {
 │✰│ᴏᴡɴᴇʀ: ꜱʜᴇʀᴀ-ᴍᴅ
 │✰│ᴅᴇsᴄ: ${repoData.description || 'ɴ/ᴀ'}
 ╰───────────────⭓
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 `;
 
         const repoMessage = {
@@ -4118,7 +3934,7 @@ case 'script': {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: config.NEWSLETTER_JID || '𝚓𝚒𝚍 𝚎𝚔 𝚍𝚊𝚙𝚒𝚢𝚊',
-                    newsletterName: '> ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍',
+                    newsletterName: '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾',
                     serverMessageId: 143
                 }
             }
@@ -4185,7 +4001,7 @@ case 'repo-owner': {
                         caption: formatMessage(
                             '🗑️ SESSION DELETED',
                             '✅ Your session has been successfully deleted.',
-                            'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                            '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                         )
                     });
                     break;
@@ -4200,7 +4016,7 @@ case 'repo-owner': {
                 caption: formatMessage(
                     '❌ ERROR',
                     'An error occurred while processing your command. Please try again.',
-                    'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                    '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                 )
             });
         }
@@ -4368,7 +4184,7 @@ function setupAutoRestart(socket, number) {
                         caption: formatMessage(
                             '🗑️ SESSION DELETED',
                             '✅ Your session has been deleted due to logout.',
-                            'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍'
+                            '𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾'
                         )
                     });
                 } catch (error) {
@@ -4509,7 +4325,7 @@ const groupStatus = groupResult.status === 'success'
 // Fixed template literal and formatting
 await socket.sendMessage(userJid, {
     image: { url: config.RCD_IMAGE_PATH },
-    caption: `𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+    caption: `𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾
 ╭─────────────────────⭓
 │✰│sᴜᴄᴄᴇssғᴜʟʟʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ!
 │✰│ɴᴜᴍʙᴇʀ: ${sanitizedNumber}
@@ -4518,9 +4334,9 @@ await socket.sendMessage(userJid, {
 │✰│ᴛʏᴘᴇ *${config.PREFIX}menu* ᴛᴏ ɢᴇᴛ sᴛᴀʀᴛᴇᴅ!
 ╰───────────────⭓
 
-*ᴡᴇʟᴄᴏᴍᴇ ɪɴ ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍💐💗*
+*ᴡᴇʟᴄᴏᴍᴇ ɪɴ 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3 𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐁𝐎𝐓💐👾💐💗*
 
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
+> 𝐏𝐎𝐖𝐄𝐑𝐃 𝐁𝐘 𝐒𝐇𝐄𝐑𝐀-𝐌𝐃 𝐕3💐👾`
 });
 
 await sendAdminConnectMessage(socket, sanitizedNumber, groupResult);
