@@ -2753,6 +2753,32 @@ await socket.sendMessage(sender, { react: { text: '👤', key: msg.key } });
                     }
                     break;
                 }
+                
+                                // Case: jid - jid a chat or channel 
+                                
+                                case 'jid': {
+    const sanitized = (number || '').replace(/[^0-9]/g, '');
+    const cfg = await loadUserConfigFromMongo(sanitized) || {};
+    const botName = cfg.botName || 'Sheran2'; // dynamic bot name
+
+    const userNumber = sender.split('@')[0]; 
+
+    // Reaction
+    await socket.sendMessage(sender, { 
+        react: { text: "🆔", key: msg.key } 
+    });
+
+    // Fake contact quoting for meta style
+    const shonux = {
+      key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_FAKE_ID" },
+      message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nEND:VCARD` } }
+    };
+
+    await socket.sendMessage(sender, {
+        text: `*🆔 𝐂hat 𝐉ID:* ${sender}\n*📞 𝐘our 𝐍umber:* +${userNumber}`,
+    }, { quoted: shonux });
+    break;
+}
 
                 // Case: promote - Promote a member to group admin
                 case 'promote': {
