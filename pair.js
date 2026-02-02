@@ -3883,160 +3883,87 @@ case 'url': {
   }
   break;
 }
-case 'tourl':
-case 'imgtourl':
-case 'url':
-case 'geturl':
-case 'upload': {
-    const axios = require('axios');
-    const FormData = require('form-data');
-    const fs = require('fs');
-    const os = require('os');
-    const path = require('path');
+case 'tourl2': {
+  try {
+    await socket.sendMessage(sender, { react: { text: '📤', key: msg.key || {} } });
+
+    console.log('Message:', JSON.stringify(msg, null, 2));
+    const quoted = msg.quoted || msg;
+    console.log('Quoted:', JSON.stringify(quoted, null, 2));
+    const mime = quoted.mimetype || (quoted.message ? Object.keys(quoted.message)[0] : '');
+
+    console.log('MIME Type or Message Type:', mime);
+
+    // Map message types to MIME types if mimetype is unavailable
+    const mimeMap = {
+      imageMessage: 'image/jpeg',
+      videoMessage: 'video/mp4',
+      audioMessage: 'audio/mp3'
+    };
+    const effectiveMime = mimeMap[mime] || mime;
+
+    if (!effectiveMime || !['image', 'video', 'audio'].some(type => effectiveMime.includes(type))) {
+      await socket.sendMessage(sender, {
+        text: `❌ *ʀᴇᴘʟʏ ᴛᴏ ɪᴍᴀɢᴇ, ᴀᴜᴅɪᴏ, ᴏʀ ᴠɪᴅᴇᴏ!*\n` +
+              `ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʏᴘᴇ: ${effectiveMime || 'none'}`
+      }, { quoted: msg });
+      break;
+    }
 
     await socket.sendMessage(sender, {
-        react: {
-            text: '🌿',
-            key: msg.key
-        }
-    });
-    
-    const quoted = msg.message?.extendedTextMessage?.contextInfo;
+      text: `⏳ *ᴜᴘʟᴏᴀᴅɪɴɢ ғɪʟᴇ...*`
+    }, { quoted: msg });
 
-    if (!quoted || !quoted.quotedMessage) {
-        return await socket.sendMessage(sender, {
-            text: '❌ Please reply to an image, video, or audio file with .tourl'
-        }, { quoted: rashuminibot });
+    const buffer = await socket.downloadMediaMessage(quoted);
+    if (!buffer || buffer.length === 0) {
+      throw new Error('Failed to download media: Empty buffer');
     }
 
-    const quotedMsg = {
-        key: {
-            remoteJid: sender,
-            id: quoted.stanzaId,
-            participant: quoted.participant
-        },
-        message: quoted.quotedMessage
-    };
-
-    let mediaBuffer;
-    let mimeType;
-    let fileName;
-
-    if (quoted.quotedMessage.imageMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = 'image/jpeg';
-        fileName = 'image.jpg';
-    } else if (quoted.quotedMessage.videoMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = 'video/mp4';
-        fileName = 'video.mp4';
-    } else if (quoted.quotedMessage.audioMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = 'audio/mpeg';
-        fileName = 'audio.mp3';
-    } else if (quoted.quotedMessage.documentMessage) {
-        mediaBuffer = await downloadMediaMessage(quotedMsg, 'buffer', {}, {
-            logger: console,
-            reuploadRequest: socket.updateMediaMessage
-        });
-        mimeType = quoted.quotedMessage.documentMessage.mimetype;
-        fileName = quoted.quotedMessage.documentMessage.fileName || 'document';
-    } else {
-        return await socket.sendMessage(sender, {
-            text: '❌ Please reply to a valid media file (image, video, audio, or document)'
-        }, { quoted: rashuminibot });
-    }
-
-    const tempFilePath = path.join(os.tmpdir(), `catbox_upload_${Date.now()}`);
-    fs.writeFileSync(tempFilePath, mediaBuffer);
+    const ext = effectiveMime.includes('image/jpeg') ? '.jpg' :
+                effectiveMime.includes('image/png') ? '.png' :
+                effectiveMime.includes('video') ? '.mp4' :
+                effectiveMime.includes('audio') ? '.mp3' : '.bin';
+    const name = `file_${Date.now()}${ext}`;
+    const tmp = path.join(os.tmpdir(), `catbox_${Date.now()}${ext}`);
+    fs.writeFileSync(tmp, buffer);
+    console.log('Saved file to:', tmp);
 
     const form = new FormData();
-    form.append('fileToUpload', fs.createReadStream(tempFilePath), fileName);
+    form.append('fileToUpload', fs.createReadStream(tmp), name);
     form.append('reqtype', 'fileupload');
 
-    const response = await axios.post('https://catbox.moe/user/api.php', form, {
-        headers: form.getHeaders()
+    const res = await axios.post('https://catbox.moe/user/api.php', form, {
+      headers: form.getHeaders()
     });
 
-    if (!response.data) {
-        fs.unlinkSync(tempFilePath);
-        return await socket.sendMessage(sender, {
-            text: '❌ Error uploading to Catbox'
-        }, { quoted: rashuminibot });
+    fs.unlinkSync(tmp);
+
+    if (!res.data || res.data.includes('error')) {
+      throw new Error(`Upload failed: ${res.data || 'No response data'}`);
     }
 
-    const mediaUrl = response.data.trim();
-    fs.unlinkSync(tempFilePath);
+    const type = effectiveMime.includes('image') ? 'ɪᴍᴀɢᴇ' :
+                 effectiveMime.includes('video') ? 'ᴠɪᴅᴇᴏ' :
+                 effectiveMime.includes('audio') ? 'ᴀᴜᴅɪᴏ' : 'ғɪʟᴇ';
 
-    let mediaType = 'File';
-    if (mimeType.includes('image')) mediaType = 'Image';
-    else if (mimeType.includes('video')) mediaType = 'Video';
-    else if (mimeType.includes('audio')) mediaType = 'Audio';
+    await socket.sendMessage(sender, {
+      text: `✅ *${type} ᴜᴘʟᴏᴀᴅᴇᴅ!*\n\n` +
+            `📁 *sɪᴢᴇ:* ${formatBytes(buffer.length)}\n` +
+            `🔗 *ᴜʀʟ:* ${res.data}\n\n` +
+            `© ᴍᴀᴅᴇ ɪɴ ʙʏ ꜱʜᴇʀᴀɴ💐💗`
+    }, { quoted: msg });
 
-    const formatBytes = (bytes) => {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-    };
-
-    const responseText = `  
-╭━━━━━━━━━━━━━━━━━●◌
-│ • *${mediaType} Uploaded Successfully*
-│ • Size: *${formatBytes(mediaBuffer.length)}*
-│ • URL: *${mediaUrl}*
-╰━━━━━━━━━━━━━━━━━●◌
-
-> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍;
-
-    const uploadMsg = generateWAMessageFromContent(sender, {
-        viewOnceMessage: {
-            message: {
-                messageContextInfo: {
-                    deviceListMetadata: {},
-                    deviceListMetadataVersion: 2
-                },
-                interactiveMessage: proto.Message.InteractiveMessage.create({
-                    body: proto.Message.InteractiveMessage.Body.create({
-                        text: responseText
-                    }),
-                    header: proto.Message.InteractiveMessage.Header.create({
-                        title: '*🖇 SHERA URL UPLOAD DONE  ✅*',
-                        subtitle: '',
-                        hasMediaAttachment: false
-                    }),
-                    nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                        buttons: [
-                            {
-                                name: 'cta_copy',
-                                buttonParamsJson: JSON.stringify({
-                                    display_text: 'Copy Url',
-                                    id: mediaUrl,
-                                    copy_code: mediaUrl
-                                })
-                            }
-                        ]
-                    })
-                })
-            }
-        }
-    }, {});
-
-    await socket.relayMessage(sender, uploadMsg.message, {
-        quoted: rashuminibot
-    });
-
-    break;
+    await socket.sendMessage(sender, { react: { text: '✅', key: msg.key || {} } });
+  } catch (error) {
+    console.error('tourl2 error:', error.message, error.stack);
+    await socket.sendMessage(sender, {
+      text: `❌ *ᴏʜ, ʟᴏᴠᴇ, ᴄᴏᴜʟᴅɴ'ᴛ ᴜᴘʟᴏᴀᴅ ᴛʜᴀᴛ ғɪʟᴇ! 😢*\n` +
+            `ᴇʀʀᴏʀ: ${error.message || 'sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ'}\n` +
+            `💡 *ᴛʀʏ ᴀɢᴀɪɴ, ᴅᴀʀʟɪɴɢ?*`
+    }, { quoted: msg });
+    await socket.sendMessage(sender, { react: { text: '❌', key: msg.key || {} } });
+  }
+  break;
 }
     
     case 'whois': {
