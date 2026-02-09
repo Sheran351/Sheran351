@@ -1671,7 +1671,52 @@ case 'song': {
     }, { quoted: msg });
   }
   break;
-} 
+}  
+case 'gdrive': {
+    try {
+        const text = args.join(' ').trim();
+        if (!text) return await socket.sendMessage(sender, { text: '⚠️ Please provide a Google Drive link.\n\nExample: `.gdrive <link>`' }, { quoted: msg });
+
+        // 🔹 Load bot name dynamically
+        const sanitized = (number || '').replace(/[^0-9]/g, '');
+        const userCfg = await loadUserConfigFromMongo(sanitized) || {};
+        const botName = userCfg.botName || BOT_NAME_FANCY;
+
+        // 🔹 Meta AI fake contact mention
+        const botMention = {
+            key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_FAKE_ID_GDRIVE" },
+            message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD
+VERSION:3.0
+N:${botName};;;;
+FN:${botName}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD` } }
+        };
+
+        // 🔹 Fetch Google Drive file info
+        const res = await axios.get(`https://saviya-kolla-api.koyeb.app/download/gdrive?url=${encodeURIComponent(text)}`);
+        if (!res.data?.status || !res.data.result) return await socket.sendMessage(sender, { text: '❌ Failed to fetch file info.' }, { quoted: botMention });
+
+        const file = res.data.result;
+
+        // 🔹 Send as document
+        await socket.sendMessage(sender, {
+            document: { 
+                url: file.downloadLink, 
+                mimetype: file.mimeType || 'application/octet-stream', 
+                fileName: file.name 
+            },
+            caption: `📂 *𝐅ile 𝐍ame:* ${file.name}\n💾 *𝐒ize:* ${file.size}\n\n*𝐏owered 𝐁y ${botName}*`,
+            contextInfo: { mentionedJid: [sender] }
+        }, { quoted: botMention });
+
+    } catch (err) {
+        console.error('GDrive command error:', err);
+        await socket.sendMessage(sender, { text: '❌ Error fetching Google Drive file.' }, { quoted: botMention });
+    }
+    break;
+}
 case 'video': {
   const yts = require('yt-search');
   const axios = require('axios'); // axios භාවිතා කරන්න
@@ -3860,97 +3905,97 @@ case 'apk': {
 }
 
 // case 39: weather
-                case 'weather': {
-  try {
-    await socket.sendMessage(sender, { react: { text: '🌦️', key: msg.key } });
+                case 'weather':
+    try {
+        // Messages in English
+        const messages = {
+            noCity: "❗ *Please provide a city name!* \n📋 *Usage*: .weather [city name]",
+            weather: (data) => `
+*🌤️ Qᴜᴇᴇɴ ɪᴍᴀʟꜱʜᴀ Wᴇᴛʜᴀʀ⛈️*
 
-    if (!q || q.trim() === '') {
-      await socket.sendMessage(sender, {
-        text: `📌 *ᴜsᴀɢᴇ:* ${config.PREFIX}weather <ᴄɪᴛʏ>\n` +
-              `*ᴇxᴀᴍᴘʟᴇ:* ${config.PREFIX}ᴡᴇᴀᴛʜᴇʀ ʜᴀɪᴛɪ`
-      }, { quoted: msg });
-      break;
+*◈  ${data.name}, ${data.sys.country}  ◈*
+
+*╭──🌤️───────●⛈️➤*
+*┣⛈️𝑇𝑒𝑚𝑙𝑒𝑟𝑎𝑡𝑢𝑟𝑒:* ${data.main.temp}°C
+*┣⛈️𝐹𝑒𝑒𝑙𝑠 𝐿𝑖𝑘𝑒:* ${data.main.feels_like}°C
+*┣⛈️𝑀𝑖𝑛 𝑇𝑒𝑚𝑝:* ${data.main.temp_min}°C
+*┣⛈️𝑀𝑎𝑥 𝑇𝑒𝑚𝑝:* ${data.main.temp_max}°C
+*┣⛈️𝐻𝑢𝑚𝑖𝑑𝑖𝑡𝑦:* ${data.main.humidity}%
+*┣⛈️𝑊𝑒𝑎𝑡ℎ𝑒𝑟:* ${data.weather[0].main}
+*┣⛈️𝐷𝑒𝑠𝑐𝑟𝑖𝑝𝑡𝑖𝑜𝑛:* ${data.weather[0].description}
+*┣⛈️𝑊𝑖𝑛𝑑 𝑆𝑝𝑒𝑒𝑑:* ${data.wind.speed} m/s
+*┣⛈️𝑃𝑟𝑒𝑠𝑠𝑢𝑟𝑒:* ${data.main.pressure} hPa
+*╰──🌤️───────●⛈️➤*
+
+*ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍*
+`,
+            cityNotFound: "🚫 *City not found!* \n🔍 Please check the spelling and try again.",
+            error: "⚠️ *An error occurred!* \n🔄 Please try again later."
+        };
+
+        // Check if a city name was provided
+        if (!args || args.length === 0) {
+            await socket.sendMessage(sender, { text: messages.noCity });
+            break;
+        }
+
+case 'send':
+case 'ඔන':
+case 'vv':
+case 'save': {
+  try {
+    const quotedMsg = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+    if (!quotedMsg) {
+      return await socket.sendMessage(sender, { text: '*❌ Please reply to a message (status/media) to save it.*' }, { quoted: msg });
     }
 
-    await socket.sendMessage(sender, {
-      text: `⏳ *ғᴇᴛᴄʜɪɴɢ ᴡᴇᴀᴛʜᴇʀ ᴅᴀᴛᴀ...*`
-    }, { quoted: msg });
+    try { await socket.sendMessage(sender, { react: { text: '✅', key: msg.key } }); } catch(e){}
 
-    const apiKey = '2d61a72574c11c4f36173b627f8cb177';
-    const city = q.trim();
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+    // 🟢 Instead of bot’s own chat, use same chat (sender)
+    const saveChat = sender;
 
-    const response = await axios.get(url, { timeout: 5000 });
-    const data = response.data;
+    if (quotedMsg.imageMessage || quotedMsg.videoMessage || quotedMsg.audioMessage || quotedMsg.documentMessage || quotedMsg.stickerMessage) {
+      const media = await downloadQuotedMedia(quotedMsg);
+      if (!media || !media.buffer) {
+        return await socket.sendMessage(sender, { text: '❌ Failed to download media.' }, { quoted: msg });
+      }
 
-    const weatherMessage = `
-🌍 *ᴡᴇᴀᴛʜᴇʀ ɪɴғᴏ ғᴏʀ* ${data.name}, ${data.sys.country}
-🌡️ *ᴛᴇᴍᴘᴇʀᴀᴛᴜʀᴇ:* ${data.main.temp}°C
-🌡️ *ғᴇᴇʟs ʟɪᴋᴇ:* ${data.main.feels_like}°C
-🌡️ *ᴍɪɴ ᴛᴇᴍᴘ:* ${data.main.temp_min}°C
-🌡️ *ᴍᴀx ᴛᴇᴍᴘ:* ${data.main.temp_max}°C
-💧 *ʜᴜᴍɪᴅɪᴛʏ:* ${data.main.humidity}%
-☁️ *ᴡᴇᴀᴛʜᴇʀ:* ${data.weather[0].main}
-🌫️ *ᴅᴇsᴄʀɪᴘᴛɪᴏɴ:* ${data.weather[0].description}
-💨 *ᴡɪɴᴅ sᴘᴇᴇᴅ:* ${data.wind.speed} m/s
-🔽 *ᴘʀᴇssᴜʀᴇ:* ${data.main.pressure} hPa
-    `;
+      if (quotedMsg.imageMessage) {
+        await socket.sendMessage(saveChat, { image: media.buffer, caption: media.caption || '✅ Status Saved' });
+      } else if (quotedMsg.videoMessage) {
+        await socket.sendMessage(saveChat, { video: media.buffer, caption: media.caption || '✅ Status Saved', mimetype: media.mime || 'video/mp4' });
+      } else if (quotedMsg.audioMessage) {
+        await socket.sendMessage(saveChat, { audio: media.buffer, mimetype: media.mime || 'audio/mp4', ptt: media.ptt || false });
+      } else if (quotedMsg.documentMessage) {
+        const fname = media.fileName || `saved_document.${(await FileType.fromBuffer(media.buffer))?.ext || 'bin'}`;
+        await socket.sendMessage(saveChat, { document: media.buffer, fileName: fname, mimetype: media.mime || 'application/octet-stream' });
+      } else if (quotedMsg.stickerMessage) {
+        await socket.sendMessage(saveChat, { image: media.buffer, caption: media.caption || '✅ Sticker Saved' });
+      }
 
-    await socket.sendMessage(sender, {
-      text: `🌤 *ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ* 🌤\n\n${weatherMessage}\n\n> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`
-    }, { quoted: msg });
+      await socket.sendMessage(sender, { text: '🔥 *𝐒tatus 𝐒aved 𝐒uccessfully!*' }, { quoted: msg });
+
+    } else if (quotedMsg.conversation || quotedMsg.extendedTextMessage) {
+      const text = quotedMsg.conversation || quotedMsg.extendedTextMessage.text;
+      await socket.sendMessage(saveChat, { text: `✅ *𝐒tatus 𝐒aved*\n\n${text}` });
+      await socket.sendMessage(sender, { text: '🔥 *𝐓ext 𝐒tatus 𝐒aved 𝐒uccessfully!*' }, { quoted: msg });
+    } else {
+      if (typeof socket.copyNForward === 'function') {
+        try {
+          const key = msg.message?.extendedTextMessage?.contextInfo?.stanzaId || msg.key;
+          await socket.copyNForward(saveChat, msg.key, true);
+          await socket.sendMessage(sender, { text: '🔥 *𝐒aved (𝐅orwarded) 𝐒uccessfully!*' }, { quoted: msg });
+        } catch (e) {
+          await socket.sendMessage(sender, { text: '❌ Could not forward the quoted message.' }, { quoted: msg });
+        }
+      } else {
+        await socket.sendMessage(sender, { text: '❌ Unsupported quoted message type.' }, { quoted: msg });
+      }
+    }
 
   } catch (error) {
-    console.error('Weather command error:', error.message);
-    let errorMessage = `❌ *ᴏʜ, ʟᴏᴠᴇ, ᴄᴏᴜʟᴅɴ'ᴛ ғᴇᴛᴄʜ ᴛʜᴇ ᴡᴇᴀᴛʜᴇʀ! 😢*\n` +
-                      `💡 *ᴛʀʏ ᴀɢᴀɪɴ, ᴅᴀʀʟɪɴɢ?*`;
-    if (error.message.includes('404')) {
-      errorMessage = `🚫 *ᴄɪᴛʏ ɴᴏᴛ ғᴏᴜɴᴅ, sᴡᴇᴇᴛɪᴇ.*\n` +
-                     `💡 *ᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ᴛʜᴇ sᴘᴇʟʟɪɴɢ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.*`;
-    } else if (error.message.includes('network') || error.message.includes('timeout')) {
-      errorMessage = `❌ *ғᴀɪʟᴇᴅ ᴛᴏ ғᴇᴛᴄʜ ᴡᴇᴀᴛʜᴇʀ:* ${error.message}\n` +
-                     `💡 *ᴘʟᴇᴀsᴇ ᴛʀʏ ᴀɢᴀɪɴ ʟᴀᴛᴇʀ, ʙᴀʙᴇ.*`;
-    }
-    await socket.sendMessage(sender, { text: errorMessage }, { quoted: msg });
-  }
-  break;
-}
-
-case 'savestatus': {
-  try {
-    await socket.sendMessage(sender, { react: { text: '💾', key: msg.key } });
-
-    if (!msg.quoted || !msg.quoted.statusMessage) {
-      await socket.sendMessage(sender, {
-        text: `📌 *ʀᴇᴘʟʏ ᴛᴏ ᴀ sᴛᴀᴛᴜs ᴛᴏ sᴀᴠᴇ ɪᴛ, ᴅᴀʀʟɪɴɢ!* 😘`
-      }, { quoted: msg });
-      break;
-    }
-
-    await socket.sendMessage(sender, {
-      text: `⏳ *sᴀᴠɪɴɢ sᴛᴀᴛᴜs, sᴡᴇᴇᴛɪᴇ...* 😘`
-    }, { quoted: msg });
-
-    const media = await socket.downloadMediaMessage(msg.quoted);
-    const fileExt = msg.quoted.imageMessage ? 'jpg' : 'mp4';
-    const filePath = `./status_${Date.now()}.${fileExt}`;
-    fs.writeFileSync(filePath, media);
-
-    await socket.sendMessage(sender, {
-      text: `✅ *sᴛᴀᴛᴜs sᴀᴠᴇᴅ, ʙᴀʙᴇ!* 😘\n` +
-            `📁 *ғɪʟᴇ:* status_${Date.now()}.${fileExt}\n` +
-            `> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍`,
-      document: { url: filePath },
-      mimetype: msg.quoted.imageMessage ? 'image/jpeg' : 'video/mp4',
-      fileName: `status_${Date.now()}.${fileExt}`
-    }, { quoted: msg });
-
-  } catch (error) {
-    console.error('Savestatus command error:', error.message);
-    await socket.sendMessage(sender, {
-      text: `❌ *ᴏʜ, ʟᴏᴠᴇ, ᴄᴏᴜʟᴅɴ'ᴛ sᴀᴠᴇ ᴛʜᴀᴛ sᴛᴀᴛᴜs! 😢*\n` +
-            `💡 *ᴛʀʏ ᴀɢᴀɪɴ, ᴅᴀʀʟɪɴɢ?*`
-    }, { quoted: msg });
+    console.error('❌ Save error:', error);
+    await socket.sendMessage(sender, { text: '*❌ Failed to save status*' }, { quoted: msg });
   }
   break;
 }
@@ -3965,7 +4010,7 @@ case 'mfdl': {
         // ✅ Load bot name dynamically
         const sanitized = (number || '').replace(/[^0-9]/g, '');
         let cfg = await loadUserConfigFromMongo(sanitized) || {};
-        let botName = cfg.botName || 'ASHIYA MINI BOT AI';
+        let botName = cfg.botName || 'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍';
 
         // ✅ Fake Meta contact message (like Facebook style)
         const shonux = {
@@ -3992,7 +4037,7 @@ END:VCARD`
         if (!url) {
             return await socket.sendMessage(sender, {
                 text: '🚫 *Please send a MediaFire link.*\n\nExample: .mediafire <url>'
-            }, { quoted: shonux });
+            }, { quoted: Shera });
         }
 
         // ⏳ Notify start
@@ -4014,12 +4059,12 @@ END:VCARD`
         const downloadUrl = result.url;
 
         const caption = `📦 *${title}*\n\n` +
-                        `📁 *Filename:* ${filename}\n` +
-                        `📏 *Size:* ${fileSize}\n` +
-                        `🌐 *From:* ${result.from}\n` +
-                        `📅 *Date:* ${result.date}\n` +
-                        `🕑 *Time:* ${result.time}\n\n` +
-                        `✅ Downloaded by ${botName}`;
+                        `📁 *𝐅ilename:* ${filename}\n` +
+                        `📏 *𝐒ize:* ${fileSize}\n` +
+                        `🌐 *𝐅rom:* ${result.from}\n` +
+                        `📅 *𝐃ate:* ${result.date}\n` +
+                        `🕑 *𝐓ime:* ${result.time}\n\n` +
+                        `*✅ 𝐃ownloaded 𝐁y ${botName}*`;
 
         // 🔹 Send file automatically (document type for .zip etc.)
         await socket.sendMessage(sender, {
@@ -4027,7 +4072,7 @@ END:VCARD`
             fileName: filename,
             mimetype: 'application/octet-stream',
             caption: caption
-        }, { quoted: shonux });
+        }, { quoted: shera });
 
     } catch (err) {
         console.error("Error in MediaFire downloader:", err);
@@ -4035,9 +4080,9 @@ END:VCARD`
         // ✅ In catch also send Meta mention style
         const sanitized = (number || '').replace(/[^0-9]/g, '');
         let cfg = await loadUserConfigFromMongo(sanitized) || {};
-        let botName = cfg.botName || 'ASHIYA MINI BOT AI';
+        let botName = cfg.botName || 'Qᴜᴇᴇɴ ɪᴍᴀʟꜱʜᴀ ᴍD ᴠ2';
 
-        const shonux = {
+        const shera = {
             key: {
                 remoteJid: "status@broadcast",
                 participant: "0@s.whatsapp.net",
@@ -4058,7 +4103,7 @@ END:VCARD`
             }
         };
 
-        await socket.sendMessage(sender, { text: '*❌ Internal Error. Please try again later.*' }, { quoted: shonux });
+        await socket.sendMessage(sender, { text: '*❌ Internal Error. Please try again later.*' }, { quoted: shera });
     }
     break;
 }
