@@ -1672,51 +1672,6 @@ case 'song': {
   }
   break;
 }  
-case 'gdrive': {
-    try {
-        const text = args.join(' ').trim();
-        if (!text) return await socket.sendMessage(sender, { text: '⚠️ Please provide a Google Drive link.\n\nExample: `.gdrive <link>`' }, { quoted: msg });
-
-        // 🔹 Load bot name dynamically
-        const sanitized = (number || '').replace(/[^0-9]/g, '');
-        const userCfg = await loadUserConfigFromMongo(sanitized) || {};
-        const botName = userCfg.botName || BOT_NAME_FANCY;
-
-        // 🔹 Meta AI fake contact mention
-        const botMention = {
-            key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_FAKE_ID_GDRIVE" },
-            message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD
-VERSION:3.0
-N:${botName};;;;
-FN:${botName}
-ORG:Meta Platforms
-TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
-END:VCARD` } }
-        };
-
-        // 🔹 Fetch Google Drive file info
-        const res = await axios.get(`https://saviya-kolla-api.koyeb.app/download/gdrive?url=${encodeURIComponent(text)}`);
-        if (!res.data?.status || !res.data.result) return await socket.sendMessage(sender, { text: '❌ Failed to fetch file info.' }, { quoted: botMention });
-
-        const file = res.data.result;
-
-        // 🔹 Send as document
-        await socket.sendMessage(sender, {
-            document: { 
-                url: file.downloadLink, 
-                mimetype: file.mimeType || 'application/octet-stream', 
-                fileName: file.name 
-            },
-            caption: `📂 *𝐅ile 𝐍ame:* ${file.name}\n💾 *𝐒ize:* ${file.size}\n\n*𝐏owered 𝐁y ${botName}*`,
-            contextInfo: { mentionedJid: [sender] }
-        }, { quoted: botMention });
-
-    } catch (err) {
-        console.error('GDrive command error:', err);
-        await socket.sendMessage(sender, { text: '❌ Error fetching Google Drive file.' }, { quoted: botMention });
-    }
-    break;
-}
 case 'video': {
   const yts = require('yt-search');
   const axios = require('axios'); // axios භාවිතා කරන්න
