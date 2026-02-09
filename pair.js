@@ -1101,6 +1101,39 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
     }
     break;
 }
+case 'weather':
+    try {
+        // Messages in English
+        const messages = {
+            noCity: "❗ *Please provide a city name!* \n📋 *Usage*: .weather [city name]",
+            weather: (data) => `
+*🌤️ Qᴜᴇᴇɴ ɪᴍᴀʟꜱʜᴀ Wᴇᴛʜᴀʀ⛈️*
+
+*◈  ${data.name}, ${data.sys.country}  ◈*
+
+*╭──🌤️───────●⛈️➤*
+*┣⛈️𝑇𝑒𝑚𝑙𝑒𝑟𝑎𝑡𝑢𝑟𝑒:* ${data.main.temp}°C
+*┣⛈️𝐹𝑒𝑒𝑙𝑠 𝐿𝑖𝑘𝑒:* ${data.main.feels_like}°C
+*┣⛈️𝑀𝑖𝑛 𝑇𝑒𝑚𝑝:* ${data.main.temp_min}°C
+*┣⛈️𝑀𝑎𝑥 𝑇𝑒𝑚𝑝:* ${data.main.temp_max}°C
+*┣⛈️𝐻𝑢𝑚𝑖𝑑𝑖𝑡𝑦:* ${data.main.humidity}%
+*┣⛈️𝑊𝑒𝑎𝑡ℎ𝑒𝑟:* ${data.weather[0].main}
+*┣⛈️𝐷𝑒𝑠𝑐𝑟𝑖𝑝𝑡𝑖𝑜𝑛:* ${data.weather[0].description}
+*┣⛈️𝑊𝑖𝑛𝑑 𝑆𝑝𝑒𝑒𝑑:* ${data.wind.speed} m/s
+*┣⛈️𝑃𝑟𝑒𝑠𝑠𝑢𝑟𝑒:* ${data.main.pressure} hPa
+*╰──🌤️───────●⛈️➤*
+
+*Qᴜᴇᴇɴ ɪᴍᴀʟꜱʜᴀ ᴍD ᴠ2*
+`,
+            cityNotFound: "🚫 *City not found!* \n🔍 Please check the spelling and try again.",
+            error: "⚠️ *An error occurred!* \n🔄 Please try again later."
+        };
+
+        // Check if a city name was provided
+        if (!args || args.length === 0) {
+            await socket.sendMessage(sender, { text: messages.noCity });
+            break;
+        }
 case'pair':
 case 'freebot': {
     // ✅ Fix for node-fetch v3.x (ESM-only module)
