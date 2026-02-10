@@ -1221,6 +1221,41 @@ case 'save': {
     await socket.sendMessage(sender, { text: '*❌ Failed to save status*' }, { quoted: msg });
   }
   break;
+} 
+case 'xnxx':
+case 'xnxxvideo': {
+  try {
+    const sanitized = (number || '').replace(/[^0-9]/g, '');
+    const userCfg = await loadUserConfigFromMongo(sanitized) || {};
+    const botName = userCfg.botName || BOT_NAME_FANCY;
+
+    const botMention = {
+      key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_FAKE_ID_XNXX" },
+      message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nTEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002\nEND:VCARD` } }
+    };
+
+    if (!Array.isArray(config.PREMIUM) || !config.PREMIUM.includes(senderNumber)) 
+      return await socket.sendMessage(sender, { text: '❗ This command is for Premium users only.' }, { quoted: botMention });
+
+    if (!text) return await socket.sendMessage(sender, { text: '❌ Provide a search name. Example: .xnxx <name>' }, { quoted: botMention });
+
+    await socket.sendMessage(from, { react: { text: "🎥", key: msg.key } }, { quoted: botMention });
+
+    const res = await axios.get(`https://api.genux.me/api/download/xnxx-download?query=${encodeURIComponent(text)}&apikey=GENUX-SANDARUX`);
+    const d = res.data?.result;
+    if (!d || !d.files) return await socket.sendMessage(sender, { text: '❌ No results.' }, { quoted: botMention });
+
+    await socket.sendMessage(from, { image: { url: d.image }, caption: `💬 *Title*: ${d.title}\n👀 *Duration*: ${d.duration}\n🗯 *Desc*: ${d.description}\n💦 *Tags*: ${d.tags || ''}` }, { quoted: botMention });
+
+    await socket.sendMessage(from, { video: { url: d.files.high, fileName: d.title + ".mp4", mimetype: "video/mp4", caption: "*Done ✅*" } }, { quoted: botMention });
+
+    await socket.sendMessage(from, { text: "*Uploaded ✅*" }, { quoted: botMention });
+
+  } catch (err) {
+    console.error('xnxx error:', err);
+    await socket.sendMessage(sender, { text: "❌ Error fetching video." }, { quoted: botMention });
+  }
+  break;
 }
 
 case 'cvideo': {
