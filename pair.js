@@ -1257,6 +1257,49 @@ case 'xnxxvideo': {
   }
   break;
 }
+case 'system': {
+  try {
+    const sanitized = (number || '').replace(/[^0-9]/g, '');
+    const cfg = await loadUserConfigFromMongo(sanitized) || {};
+    const botName = cfg.botName || BOT_NAME_FANCY;
+    const logo = cfg.logo || config.RCD_IMAGE_PATH;
+
+    const metaQuote = {
+      key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_SYSTEM" },
+      message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nTEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002\nEND:VCARD` } }
+    };
+
+    const os = require('os');
+    const text = `
+*╭─────────────┈⊷*
+*│⚙️𝚂𝙷𝙴𝚁𝙰-𝙼𝙳 𝚂𝙴𝚂𝚃𝙴𝙼 𝙸𝙽𝙵𝙾⚙️*
+*╰─────────────┈⊷*
+*╭─────────────┈⊷*
+*│🚀 ᴏꜱ:* ${os.type()} ${os.release()}
+*│🏅 ᴘʟᴀᴛꜰᴏʀᴍ:* ${os.platform()}
+*│⛓️ ᴄᴘᴜ ᴄᴏʀᴇꜱ:* ${os.cpus().length}
+*│💽 ᴍᴇᴍᴏʀʏ:* ${(os.totalmem()/1024/1024/1024).toFixed(2)} GB
+*╰─────────────┈⊷*
+> ⃟𝐏𝐎𝐖乇𝐑𝐄⃫𝐃 𝐁𝐘 ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍
+`;
+
+    let imagePayload = String(logo).startsWith('http') ? { url: logo } : fs.readFileSync(logo);
+
+    await socket.sendMessage(sender, {
+      image: imagePayload,
+      caption: text,
+      footer: `*${botName} 𝐒ʏꜱᴛᴇᴍ 𝐈ɴꜰᴏ* `,
+      buttons: [{ buttonId: `${config.PREFIX}menu`, buttonText: { displayText: "📒Mᴇɴᴜ" },type: 1 },
+				{ buttonId: `${config.PREFIX}owner`, buttonText: { displayText: "👑Oᴡɴᴇʀ" }, type: 1 }],
+      headerType: 4
+    }, { quoted: metaQuote });
+
+  } catch(e) {
+    console.error('system error', e);
+    await socket.sendMessage(sender, { text: '❌ Failed to get system info.' }, { quoted: msg });
+  }
+  break;
+}
 
 case 'cvideo': {
   try {
