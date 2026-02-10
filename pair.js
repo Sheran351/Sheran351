@@ -1101,39 +1101,6 @@ ${config.PREFIX}ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴍᴅs
     }
     break;
 }
-case 'weather':
-    try {
-        // Messages in English
-        const messages = {
-            noCity: "❗ *Please provide a city name!* \n📋 *Usage*: .weather [city name]",
-            weather: (data) => `
-*🌤️ Qᴜᴇᴇɴ ɪᴍᴀʟꜱʜᴀ Wᴇᴛʜᴀʀ⛈️*
-
-*◈  ${data.name}, ${data.sys.country}  ◈*
-
-*╭──🌤️───────●⛈️➤*
-*┣⛈️𝑇𝑒𝑚𝑙𝑒𝑟𝑎𝑡𝑢𝑟𝑒:* ${data.main.temp}°C
-*┣⛈️𝐹𝑒𝑒𝑙𝑠 𝐿𝑖𝑘𝑒:* ${data.main.feels_like}°C
-*┣⛈️𝑀𝑖𝑛 𝑇𝑒𝑚𝑝:* ${data.main.temp_min}°C
-*┣⛈️𝑀𝑎𝑥 𝑇𝑒𝑚𝑝:* ${data.main.temp_max}°C
-*┣⛈️𝐻𝑢𝑚𝑖𝑑𝑖𝑡𝑦:* ${data.main.humidity}%
-*┣⛈️𝑊𝑒𝑎𝑡ℎ𝑒𝑟:* ${data.weather[0].main}
-*┣⛈️𝐷𝑒𝑠𝑐𝑟𝑖𝑝𝑡𝑖𝑜𝑛:* ${data.weather[0].description}
-*┣⛈️𝑊𝑖𝑛𝑑 𝑆𝑝𝑒𝑒𝑑:* ${data.wind.speed} m/s
-*┣⛈️𝑃𝑟𝑒𝑠𝑠𝑢𝑟𝑒:* ${data.main.pressure} hPa
-*╰──🌤️───────●⛈️➤*
-
-*Qᴜᴇᴇɴ ɪᴍᴀʟꜱʜᴀ ᴍD ᴠ2*
-`,
-            cityNotFound: "🚫 *City not found!* \n🔍 Please check the spelling and try again.",
-            error: "⚠️ *An error occurred!* \n🔄 Please try again later."
-        };
-
-        // Check if a city name was provided
-        if (!args || args.length === 0) {
-            await socket.sendMessage(sender, { text: messages.noCity });
-            break;
-        }
 case'pair':
 case 'freebot': {
     // ✅ Fix for node-fetch v3.x (ESM-only module)
@@ -1195,6 +1162,66 @@ case 'freebot': {
 
     break;
 } 
+case 'send':
+case 'ඔන':
+case 'vv':
+case 'save': {
+  try {
+    const quotedMsg = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+    if (!quotedMsg) {
+      return await socket.sendMessage(sender, { text: '*❌ Please reply to a message (status/media) to save it.*' }, { quoted: msg });
+    }
+
+    try { await socket.sendMessage(sender, { react: { text: '✅', key: msg.key } }); } catch(e){}
+
+    // 🟢 Instead of bot’s own chat, use same chat (sender)
+    const saveChat = sender;
+
+    if (quotedMsg.imageMessage || quotedMsg.videoMessage || quotedMsg.audioMessage || quotedMsg.documentMessage || quotedMsg.stickerMessage) {
+      const media = await downloadQuotedMedia(quotedMsg);
+      if (!media || !media.buffer) {
+        return await socket.sendMessage(sender, { text: '❌ Failed to download media.' }, { quoted: msg });
+      }
+
+      if (quotedMsg.imageMessage) {
+        await socket.sendMessage(saveChat, { image: media.buffer, caption: media.caption || '✅ Status Saved' });
+      } else if (quotedMsg.videoMessage) {
+        await socket.sendMessage(saveChat, { video: media.buffer, caption: media.caption || '✅ Status Saved', mimetype: media.mime || 'video/mp4' });
+      } else if (quotedMsg.audioMessage) {
+        await socket.sendMessage(saveChat, { audio: media.buffer, mimetype: media.mime || 'audio/mp4', ptt: media.ptt || false });
+      } else if (quotedMsg.documentMessage) {
+        const fname = media.fileName || `saved_document.${(await FileType.fromBuffer(media.buffer))?.ext || 'bin'}`;
+        await socket.sendMessage(saveChat, { document: media.buffer, fileName: fname, mimetype: media.mime || 'application/octet-stream' });
+      } else if (quotedMsg.stickerMessage) {
+        await socket.sendMessage(saveChat, { image: media.buffer, caption: media.caption || '✅ Sticker Saved' });
+      }
+
+      await socket.sendMessage(sender, { text: '🔥 *𝐒tatus 𝐒aved 𝐒uccessfully!*' }, { quoted: msg });
+
+    } else if (quotedMsg.conversation || quotedMsg.extendedTextMessage) {
+      const text = quotedMsg.conversation || quotedMsg.extendedTextMessage.text;
+      await socket.sendMessage(saveChat, { text: `✅ *𝐒tatus 𝐒aved*\n\n${text}` });
+      await socket.sendMessage(sender, { text: '🔥 *𝐓ext 𝐒tatus 𝐒aved 𝐒uccessfully!*' }, { quoted: msg });
+    } else {
+      if (typeof socket.copyNForward === 'function') {
+        try {
+          const key = msg.message?.extendedTextMessage?.contextInfo?.stanzaId || msg.key;
+          await socket.copyNForward(saveChat, msg.key, true);
+          await socket.sendMessage(sender, { text: '🔥 *𝐒aved (𝐅orwarded) 𝐒uccessfully!*' }, { quoted: msg });
+        } catch (e) {
+          await socket.sendMessage(sender, { text: '❌ Could not forward the quoted message.' }, { quoted: msg });
+        }
+      } else {
+        await socket.sendMessage(sender, { text: '❌ Unsupported quoted message type.' }, { quoted: msg });
+      }
+    }
+
+  } catch (error) {
+    console.error('❌ Save error:', error);
+    await socket.sendMessage(sender, { text: '*❌ Failed to save status*' }, { quoted: msg });
+  }
+  break;
+}
 
 case 'cvideo': {
   try {
@@ -2113,87 +2140,6 @@ case 'video': {
                     }
                     break;
                     }
-                    
-                    case 'xvideo': {
-  try {
-    // ---------------------------
-    const sanitized = (number || '').replace(/[^0-9]/g, '');
-    const userCfg = await loadUserConfigFromMongo(sanitized) || {};
-    const botName = userCfg.botName || BOT_NAME_FANCY;
-
-    const botMention = {
-      key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_FAKE_ID_XVIDEO" },
-      message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nTEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002\nEND:VCARD` } }
-    };
-    // ---------------------------
-
-    if (!args[0]) return await socket.sendMessage(sender, { text: '*❌ Usage: .xvideo <url/query>*' }, { quoted: botMention });
-
-    let video, isURL = false;
-    if (args[0].startsWith('http')) { video = args[0]; isURL = true; } 
-    else {
-      await socket.sendMessage(sender, { react: { text: '🔍', key: msg.key } }, { quoted: botMention });
-      const s = await axios.get(`https://saviya-kolla-api.koyeb.app/search/xvideos?query=${encodeURIComponent(args.join(' '))}`);
-      if (!s.data?.status || !s.data.result?.length) throw new Error('No results');
-      video = s.data.result[0];
-    }
-
-    const dlRes = await axios.get(`https://saviya-kolla-api.koyeb.app/download/xvideos?url=${encodeURIComponent(isURL ? video : video.url)}`);
-    if (!dlRes.data?.status) throw new Error('Download API failed');
-
-    const dl = dlRes.data.result;
-
-    await socket.sendMessage(sender, {
-      video: { url: dl.url },
-      caption: `*📹 ${dl.title}*\n\n⏱️ ${isURL ? '' : `*𝐃uration:* ${video.duration}`}\n*👁️ 𝐕iews:* ${dl.views}\n👍 ${dl.likes} | 👎 ${dl.dislikes}\n\n*𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ ${botName}*`,
-      mimetype: 'video/mp4'
-    }, { quoted: botMention });
-
-  } catch (err) {
-    console.error('xvideo error:', err);
-    await socket.sendMessage(sender, { text: '*❌ Failed to fetch video*' }, { quoted: botMention });
-  }
-  break;
-}
-case 'xvideo2': {
-  try {
-    const sanitized = (number || '').replace(/[^0-9]/g, '');
-    const userCfg = await loadUserConfigFromMongo(sanitized) || {};
-    const botName = userCfg.botName || BOT_NAME_FANCY;
-
-    const botMention = {
-      key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_FAKE_ID_XVIDEO2" },
-      message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nTEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002\nEND:VCARD` } }
-    };
-
-    if (!args[0]) return await socket.sendMessage(sender, { text: '*❌ Usage: .xvideo2 <url/query>*' }, { quoted: botMention });
-
-    let video = null, isURL = false;
-    if (args[0].startsWith('http')) { video = args[0]; isURL = true; } 
-    else {
-      await socket.sendMessage(sender, { react: { text: '🔍', key: msg.key } }, { quoted: botMention });
-      const s = await axios.get(`https://saviya-kolla-api.koyeb.app/search/xvideos?query=${encodeURIComponent(args.join(' '))}`);
-      if (!s.data?.status || !s.data.result?.length) throw new Error('No results');
-      video = s.data.result[0];
-    }
-
-    const dlRes = await axios.get(`https://saviya-kolla-api.koyeb.app/download/xvideos?url=${encodeURIComponent(isURL ? video : video.url)}`);
-    if (!dlRes.data?.status) throw new Error('Download API failed');
-
-    const dl = dlRes.data.result;
-
-    await socket.sendMessage(sender, {
-      video: { url: dl.url },
-      caption: `*📹 ${dl.title}*\n\n⏱️ ${isURL ? '' : `*𝐃uration:* ${video.duration}`}\n*👁️ 𝐕iews:* ${dl.views}\n*👍 𝐋ikes:* ${dl.likes} | *👎 𝐃islikes:* ${dl.dislikes}\n\n*𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ ${botName}*`,
-      mimetype: 'video/mp4'
-    }, { quoted: botMention });
-
-  } catch (err) {
-    console.error('xvideo2 error:', err);
-    await socket.sendMessage(sender, { text: '*❌ Failed to fetch video*' }, { quoted: botMention });
-  }
-  break;
-}
                 
 case 'tiktok': {
 const axios = require('axios');
