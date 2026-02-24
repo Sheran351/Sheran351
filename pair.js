@@ -4220,7 +4220,7 @@ END:VCARD`
         await socket.sendMessage(sender, { text: '*⏳ Fetching MediaFire file info...*' }, { quoted: shonux });
 
         // 🔹 Call API
-        let api = `https://tharuzz-ofc-apis.vercel.app/api/download/mediafire?url=${encodeURIComponent(url)}`;
+        let api = `https://api.srihub.store/download/mediafire?url=https://www.mediafire.com/file/0tr9vw91gbnahqb/FF_Mod_Panle.apk/file${encodeURIComponent(url)}`;
         let { data } = await axios.get(api);
 
         if (!data.success || !data.result) {
