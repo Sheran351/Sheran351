@@ -4283,31 +4283,108 @@ END:VCARD`
     break;
 }
 
+// ==================== STICKER MAKER ====================
 case 'sticker':
 case 's': {
-    await socket.sendMessage(sender, { react: { text: '✨', key: msg.key } });
+  // 1. Reaction
+  try { await socket.sendMessage(sender, { react: { text: "🎨", key: msg.key } }); } catch(e){}
 
-    try {
-        let quoted = msg.quoted ? msg.quoted : msg;
-        let mime = (quoted.msg || quoted).mimetype || '';
+  // 2. Load user config (botName, logo) – for the quoted vCard
+  let userCfg = {};
+  try { 
+    if (number && typeof loadUserConfigFromMongo === 'function') 
+      userCfg = await loadUserConfigFromMongo((number || '').replace(/[^0-9]/g, '')) || {}; 
+  } catch(e){ userCfg = {}; }
 
-        if (!mime) {
-            return socket.sendMessage(from, { text: '⚠️ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴀɴ ɪᴍᴀɢᴇ/ᴠɪᴅᴇᴏ ᴛᴏ ᴍᴀᴋᴇ ᴀ sᴛɪᴄᴋᴇʀ!' }, { quoted: msg });
-        }
+  const botName = userCfg.botName || 'ㅹ𝐒𝐇𝐄𝐑𝐀⃢-𝐌𝐃 𝐕4⃞ 🌐⛓️🤍';
 
-        if (/image|video/.test(mime)) {
-            let media = await quoted.download();
-            await socket.sendMessage(from, { 
-                sticker: media 
-            }, { quoted: msg });
-        } else {
-            await socket.sendMessage(from, { text: '❌ ᴏɴʟʏ ɪᴍᴀɢᴇ ᴏʀ ᴠɪᴅᴇᴏ ᴀʟʟᴏᴡᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ!' }, { quoted: msg });
-        }
-    } catch (error) {
-        console.error('Error in .sticker command:', error);
-        await socket.sendMessage(from, { text: '💔 ғᴀɪʟᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ. ᴛʀʏ ᴀɢᴀɪɴ!' }, { quoted: msg });
+  // 3. Fake quoted vCard (menu style) – will appear as the quoted message for the sticker
+  const fakeQuote = {
+    key: {
+      remoteJid: "status@broadcast",
+      participant: "0@s.whatsapp.net",
+      fromMe: false,
+      id: "META_AI_FAKE_ID_STICKER"
+    },
+    message: {
+      contactMessage: {
+        displayName: botName,
+        vcard: `BEGIN:VCARD
+VERSION:3.0
+N:${botName};;;;
+FN:${botName}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD`
+      }
     }
-    break;
+  };
+
+  // 4. Check for quoted image/video
+  const quoted = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+  const mime = msg.message?.imageMessage?.mimetype || 
+               msg.message?.videoMessage?.mimetype || 
+               quoted?.imageMessage?.mimetype || 
+               quoted?.videoMessage?.mimetype;
+
+  if (!mime) {
+    return await socket.sendMessage(sender, { 
+      text: '❌ Please reply to an image or video to create a sticker.' 
+    }, { quoted: fakeQuote });
+  }
+
+  // 5. Download media and convert to sticker
+  try {
+    const fs = require('fs');
+    const { exec } = require('child_process');
+
+    let media = await downloadQuotedMedia(msg.message?.imageMessage ? msg.message : quoted);
+    let buffer = media.buffer;
+
+    // Generate random ID
+    const generateOTP = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    let ran = generateOTP();
+    let pathIn = `./${ran}.${mime.split('/')[1]}`;
+    let pathOut = `./${ran}.webp`;
+
+    fs.writeFileSync(pathIn, buffer);
+
+    // FFmpeg command
+    let ffmpegCmd = '';
+    if (mime.includes('image')) {
+      ffmpegCmd = `ffmpeg -i ${pathIn} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${pathOut}`;
+    } else {
+      ffmpegCmd = `ffmpeg -i ${pathIn} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${pathOut}`;
+    }
+
+    exec(ffmpegCmd, async (err) => {
+      fs.unlinkSync(pathIn); // Delete input
+
+      if (err) {
+        console.error('Sticker conversion error:', err);
+        return await socket.sendMessage(sender, { 
+          text: '❌ Error converting media to sticker.' 
+        }, { quoted: fakeQuote });
+      }
+
+      // Send sticker with the fake quoted vCard
+      await socket.sendMessage(sender, { 
+        sticker: fs.readFileSync(pathOut) 
+      }, { quoted: fakeQuote });
+
+      fs.unlinkSync(pathOut); // Delete output
+
+      // Optional: send a small confirmation text with same fakeQuote (or just let the sticker speak)
+      console.log('✅ Sticker sent');
+    });
+
+  } catch (e) {
+    console.error('Sticker command error:', e);
+    await socket.sendMessage(sender, { 
+      text: '❌ Failed to create sticker.' 
+    }, { quoted: fakeQuote });
+  }
+  break;
 }
 
 case 'url': {
